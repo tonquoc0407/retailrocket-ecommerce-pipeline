@@ -33,6 +33,21 @@ python spark_jobs/bronze_ingest.py            # reads data/raw, writes data/bron
 python spark_jobs/bronze_ingest.py --no-log   # skip the pipeline_runs write
 ```
 
+## Gold layer (Spark load + dbt)
+
+Load the silver/bronze data into Postgres, then build the gold models:
+
+```
+export JAVA_HOME=/path/to/jdk-17
+python spark_jobs/feature_gold.py             # JDBC load -> raw_* + item_latest + cooccur_pairs
+
+dbt run  --project-dir dbt/retailrocket --profiles-dir dbt/retailrocket
+dbt test --project-dir dbt/retailrocket --profiles-dir dbt/retailrocket
+```
+
+dbt reads its connection from the same `POSTGRES_*` env vars as everything else
+(`dbt/retailrocket/profiles.yml`). Models land in the `gold` schema.
+
 ## Tests
 
 ```
