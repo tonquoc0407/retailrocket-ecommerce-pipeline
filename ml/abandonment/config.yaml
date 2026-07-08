@@ -1,0 +1,30 @@
+# swap `algorithm` to retrain with a different model, no code changes.
+# one of: xgboost, lightgbm, random_forest, logistic
+algorithm: xgboost
+
+test_fraction: 0.2   # most recent sessions held out (time-based split)
+
+features:
+  - start_hour
+  - event_count
+  - n_views
+  - n_carts
+  - n_items
+  - n_categories
+  - views_per_item
+
+params:
+  xgboost:
+    n_estimators: 200
+    max_depth: 5
+    learning_rate: 0.1
+  lightgbm:
+    n_estimators: 200
+    max_depth: -1
+    learning_rate: 0.1
+  random_forest:
+    n_estimators: 300
+    max_depth: 12
+  logistic:
+    C: 1.0
+    max_iter: 1000

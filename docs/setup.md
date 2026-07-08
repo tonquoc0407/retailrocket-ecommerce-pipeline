@@ -48,6 +48,23 @@ dbt test --project-dir dbt/retailrocket --profiles-dir dbt/retailrocket
 dbt reads its connection from the same `POSTGRES_*` env vars as everything else
 (`dbt/retailrocket/profiles.yml`). Models land in the `gold` schema.
 
+## Models
+
+After the gold layer is loaded (recommenders read silver Parquet; abandonment reads the
+`feature_sessions` mart from Postgres):
+
+```
+export JAVA_HOME=/path/to/jdk-17
+
+# recommender -> item_recommendations table (method column: als / item2vec)
+python ml/recommender/train_als.py
+python ml/recommender/train_item2vec.py
+
+# cart-abandonment classifier -> ml/model_registry/abandon_<algo>.pkl
+python ml/abandonment/train.py           # algorithm from ml/abandonment/config.yaml
+python ml/abandonment/train.py --all     # train + compare xgboost / rf / logistic
+```
+
 ## Tests
 
 ```
