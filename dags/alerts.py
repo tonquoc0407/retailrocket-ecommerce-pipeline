@@ -5,7 +5,6 @@ import urllib.request
 
 log = logging.getLogger(__name__)
 
-
 def notify_failure(context):
     # on_failure_callback: POST a short message to the webhook in ALERT_WEBHOOK_URL.
     # no-op if the var is unset so local runs without a webhook don't error.

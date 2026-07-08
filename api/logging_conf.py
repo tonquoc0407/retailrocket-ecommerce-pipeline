@@ -5,7 +5,6 @@ import sys
 # fields the request middleware attaches; pulled onto the top level of the json log
 REQUEST_FIELDS = ("method", "path", "status", "latency_ms")
 
-
 class JsonFormatter(logging.Formatter):
     def format(self, record):
         out = {
@@ -20,7 +19,6 @@ class JsonFormatter(logging.Formatter):
         if record.exc_info:
             out["exc"] = self.formatException(record.exc_info)
         return json.dumps(out)
-
 
 def configure_logging():
     handler = logging.StreamHandler(sys.stdout)

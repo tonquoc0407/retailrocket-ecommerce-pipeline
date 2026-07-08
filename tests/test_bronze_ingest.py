@@ -9,13 +9,11 @@ import bronze_ingest  # noqa: E402
 
 FIXTURES = os.path.join(os.path.dirname(__file__), "fixtures")
 
-
 @pytest.fixture(scope="module")
 def spark():
     s = SparkSession.builder.master("local[1]").appName("test_bronze").getOrCreate()
     yield s
     s.stop()
-
 
 def test_bronze_writes_all_tables(spark, tmp_path):
     out = str(tmp_path / "bronze")

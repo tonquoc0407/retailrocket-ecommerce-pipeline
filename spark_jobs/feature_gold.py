@@ -14,7 +14,6 @@ MIN_SUPPORT = 2
 
 PG_JDBC_VERSION = "org.postgresql:postgresql:42.7.3"
 
-
 def latest_item_snapshot(item_props):
     # dim_items wants the item's *current* category, so take the newest snapshot per item
     # (this is the opposite of silver's point-in-time join, and that's intentional)
@@ -23,7 +22,6 @@ def latest_item_snapshot(item_props):
     return (cats.withColumn("rn", F.row_number().over(w))
             .filter("rn = 1")
             .select("itemid", F.col("value").cast("long").alias("categoryid")))
-
 
 def cooccurrence_pairs(events, min_support=MIN_SUPPORT):
     tagged = tag_sessions(events)
@@ -43,13 +41,11 @@ def cooccurrence_pairs(events, min_support=MIN_SUPPORT):
     purchases = pairs_for(tagged.filter(F.col("event") == "transaction"), "purchase")
     return views.unionByName(purchases).filter(F.col("weight") >= min_support)
 
-
 def jdbc_url():
     host = os.getenv("POSTGRES_HOST", "localhost")
     port = os.getenv("POSTGRES_PORT", "5432")
     db = os.getenv("POSTGRES_DB", "retailrocket")
     return f"jdbc:postgresql://{host}:{port}/{db}"
-
 
 def jdbc_props():
     return {
@@ -58,12 +54,10 @@ def jdbc_props():
         "driver": "org.postgresql.Driver",
     }
 
-
 def write_table(df, table, url, props):
     # truncate instead of drop-and-recreate so dbt views built on these source tables
     # survive a re-run. (a column change still needs a manual drop / dbt clean.)
     df.write.mode("overwrite").option("truncate", "true").jdbc(url, table, properties=props)
-
 
 def run(spark, silver_dir, bronze_dir, url, props):
     events = spark.read.parquet(f"{silver_dir}/events_enriched")
@@ -83,7 +77,6 @@ def run(spark, silver_dir, bronze_dir, url, props):
     write_table(cooccurrence_pairs(events), "cooccur_pairs", url, props)
 
     return sessions.count()
-
 
 def main():
     ap = argparse.ArgumentParser()
@@ -115,7 +108,6 @@ def main():
     print(f"feature_gold landed gold source tables in {duration:.1f}s")
     if not args.no_log:
         log_run("feature_gold", rows, duration, "success", started)
-
 
 if __name__ == "__main__":
     main()

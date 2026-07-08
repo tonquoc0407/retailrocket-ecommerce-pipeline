@@ -5,7 +5,6 @@ from api.schemas import RecItem, RecommendResponse
 
 router = APIRouter()
 
-
 def _fallback(item_id, n):
     # cold-start: item has no trained recommendations, so use co-purchase neighbours
     # from the gold pairs table (either side of the pair).
@@ -23,7 +22,6 @@ def _fallback(item_id, n):
             {"id": item_id, "n": n},
         )
         return cur.fetchall()
-
 
 @router.get("/recommend/{item_id}", response_model=RecommendResponse)
 def recommend(item_id: int, method: str = "als", n: int = Query(10, ge=1, le=100)):

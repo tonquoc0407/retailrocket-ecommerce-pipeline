@@ -8,7 +8,6 @@ from api.schemas import FunnelRow, TopItem
 
 router = APIRouter()
 
-
 @router.get("/funnel-stats", response_model=list[FunnelRow])
 def funnel_stats(
     category_id: Optional[int] = None,
@@ -40,7 +39,6 @@ def funnel_stats(
             params,
         )
         return [FunnelRow(**r) for r in cur.fetchall()]
-
 
 @router.get("/top-items", response_model=list[TopItem])
 def top_items(limit: int = Query(10, ge=1, le=100), min_views: int = Query(20, ge=1)):

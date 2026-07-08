@@ -10,13 +10,11 @@ import feature_gold  # noqa: E402
 
 FIXTURES = os.path.join(os.path.dirname(__file__), "fixtures")
 
-
 @pytest.fixture(scope="module")
 def spark():
     s = SparkSession.builder.master("local[1]").appName("test_feature_gold").getOrCreate()
     yield s
     s.stop()
-
 
 def test_latest_item_snapshot_takes_newest(spark):
     props = bronze_ingest.read_csv(spark, f"{FIXTURES}/silver_props.csv",
@@ -25,7 +23,6 @@ def test_latest_item_snapshot_takes_newest(spark):
     assert len(rows) == 1
     assert rows[0]["itemid"] == 100
     assert rows[0]["categoryid"] == 20   # newest snapshot (ts=5000), not the ts=1000 one
-
 
 def test_cooccurrence_pairs(spark):
     events = bronze_ingest.read_csv(spark, f"{FIXTURES}/cooccur_events.csv",

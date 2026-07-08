@@ -1,7 +1,6 @@
 import os
 from datetime import datetime, timezone
 
-
 def _conn():
     import psycopg2  # imported lazily so transform code runs without the DB driver
     return psycopg2.connect(
@@ -11,7 +10,6 @@ def _conn():
         user=os.getenv("POSTGRES_USER", "retail"),
         password=os.getenv("POSTGRES_PASSWORD", "retail"),
     )
-
 
 def log_run(task_name, rows_processed, duration_seconds, status,
             started_at, error_message=None):
@@ -27,7 +25,6 @@ def log_run(task_name, rows_processed, duration_seconds, status,
                 (task_name, rows_processed, duration_seconds,
                  status, started_at, error_message),
             )
-
 
 def now_utc():
     return datetime.now(timezone.utc)

@@ -14,11 +14,9 @@ import base  # noqa: E402
 
 PG_JDBC = "org.postgresql:postgresql:42.7.3"
 
-
 def top_items(ratings, cap):
     counts = ratings.groupBy("itemid").agg(F.sum("rating").alias("pop"))
     return counts.orderBy(F.col("pop").desc()).limit(cap).select("itemid")
-
 
 def train(spark, silver_dir):
     events = spark.read.parquet(f"{silver_dir}/events_enriched")
@@ -37,7 +35,6 @@ def train(spark, silver_dir):
                .select("id", "vec"))
 
     return base.top_n_neighbors(vectors)
-
 
 def main():
     ap = argparse.ArgumentParser()
@@ -66,7 +63,6 @@ def main():
     print(f"train_als wrote {n} recommendations in {duration:.1f}s")
     if not args.no_log:
         log_run("train_als", n, duration, "success", started)
-
 
 if __name__ == "__main__":
     main()

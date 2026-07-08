@@ -8,11 +8,9 @@ from pipeline_log import log_run, now_utc
 
 EVENT_KEYS = ["timestamp", "visitorid", "event", "itemid", "transactionid"]
 
-
 def dedupe_events(events):
     # the raw events.csv ships exact duplicate rows; drop them on the natural key
     return events.dropDuplicates(EVENT_KEYS)
-
 
 def point_in_time_category(events, item_props):
     # Attach the item's category *as it was at the moment of the event*.
@@ -52,7 +50,6 @@ def point_in_time_category(events, item_props):
     # TODO: same pattern could enrich `available` (in-stock at event time) if needed
     return enriched
 
-
 def run(spark, bronze_dir, out_dir):
     events = spark.read.parquet(f"{bronze_dir}/events")
     props = spark.read.parquet(f"{bronze_dir}/item_properties")
@@ -64,7 +61,6 @@ def run(spark, bronze_dir, out_dir):
         .parquet(f"{out_dir}/events_enriched")
 
     return spark.read.parquet(f"{out_dir}/events_enriched").count()
-
 
 def main():
     ap = argparse.ArgumentParser()
@@ -91,7 +87,6 @@ def main():
     print(f"silver_transform wrote {rows} enriched event rows in {duration:.1f}s")
     if not args.no_log:
         log_run("silver_transform", rows, duration, "success", started)
-
 
 if __name__ == "__main__":
     main()

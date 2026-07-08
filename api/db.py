@@ -8,7 +8,6 @@ GOLD_SCHEMA = os.getenv("GOLD_SCHEMA", "gold")
 
 _pool = None
 
-
 def init_pool():
     global _pool
     _pool = SimpleConnectionPool(
@@ -20,11 +19,9 @@ def init_pool():
         password=os.getenv("POSTGRES_PASSWORD", "retail"),
     )
 
-
 def close_pool():
     if _pool:
         _pool.closeall()
-
 
 @contextmanager
 def get_cursor():

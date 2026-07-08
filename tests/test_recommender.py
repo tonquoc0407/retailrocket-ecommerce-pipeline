@@ -12,13 +12,11 @@ import base  # noqa: E402
 
 FIXTURES = os.path.join(os.path.dirname(__file__), "fixtures")
 
-
 @pytest.fixture(scope="module")
 def spark():
     s = SparkSession.builder.master("local[1]").appName("test_recommender").getOrCreate()
     yield s
     s.stop()
-
 
 def test_implicit_ratings_weight_events(spark):
     events = bronze_ingest.read_csv(spark, f"{FIXTURES}/cooccur_events.csv",
@@ -28,7 +26,6 @@ def test_implicit_ratings_weight_events(spark):
     assert ratings[(1, 100)] == 6   # view(1) + transaction(5)
     assert ratings[(1, 200)] == 6
     assert ratings[(1, 300)] == 1   # view only
-
 
 def test_top_n_neighbors_by_cosine(spark):
     df = spark.read.csv(f"{FIXTURES}/rec_vectors.csv", header=True, inferSchema=True)

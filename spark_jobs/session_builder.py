@@ -8,7 +8,6 @@ from pipeline_log import log_run, now_utc
 
 SESSION_TIMEOUT = 1800  # seconds; 30 min of inactivity starts a new session
 
-
 def tag_sessions(events):
     # attach a session_id to every event (reused by feature_gold for co-occurrence)
     w = Window.partitionBy("visitorid").orderBy("timestamp")
@@ -24,7 +23,6 @@ def tag_sessions(events):
 
     return events.withColumn("session_num", session_num) \
         .withColumn("session_id", F.concat_ws("-", F.col("visitorid"), F.col("session_num")))
-
 
 def build_sessions(events):
     tagged = tag_sessions(events)
@@ -43,14 +41,12 @@ def build_sessions(events):
             .select("session_id", "visitorid", "start_time", "end_time",
                     "event_count", "has_purchase", "session_date"))
 
-
 def run(spark, silver_dir, out_dir):
     events = spark.read.parquet(f"{silver_dir}/events_enriched")
     sessions = build_sessions(events)
     sessions.write.mode("overwrite").partitionBy("session_date") \
         .parquet(f"{out_dir}/sessions")
     return spark.read.parquet(f"{out_dir}/sessions").count()
-
 
 def main():
     ap = argparse.ArgumentParser()
@@ -77,7 +73,6 @@ def main():
     print(f"session_builder wrote {rows} sessions in {duration:.1f}s")
     if not args.no_log:
         log_run("session_builder", rows, duration, "success", started)
-
 
 if __name__ == "__main__":
     main()

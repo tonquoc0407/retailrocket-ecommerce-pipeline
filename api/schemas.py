@@ -3,19 +3,16 @@ from typing import Optional
 
 from pydantic import BaseModel
 
-
 class RecItem(BaseModel):
     rec_item_id: int
     score: float
     rank: int
-
 
 class RecommendResponse(BaseModel):
     item_id: int
     source: str          # "recommender" or "cooccur_fallback"
     method: Optional[str] = None
     items: list[RecItem]
-
 
 class FunnelRow(BaseModel):
     category_id: int
@@ -26,14 +23,12 @@ class FunnelRow(BaseModel):
     cart_rate: float
     purchase_rate: float
 
-
 class TopItem(BaseModel):
     itemid: int
     categoryid: Optional[int] = None
     views: int
     purchases: int
     item_purchase_rate: float
-
 
 class AbandonFeatures(BaseModel):
     start_hour: int
@@ -44,10 +39,8 @@ class AbandonFeatures(BaseModel):
     n_categories: int
     views_per_item: float
 
-
 class AbandonResponse(BaseModel):
     abandon_probability: float
-
 
 class PipelineRun(BaseModel):
     task_name: str

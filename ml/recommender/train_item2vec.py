@@ -16,7 +16,6 @@ import base  # noqa: E402
 
 PG_JDBC = "org.postgresql:postgresql:42.7.3"
 
-
 def item_sequences(events):
     # treat each session's item order as a "sentence" for word2vec (item2vec)
     tagged = tag_sessions(events)
@@ -24,7 +23,6 @@ def item_sequences(events):
         F.sort_array(F.collect_list(F.struct("timestamp", "itemid"))).alias("s"))
     seqs = ordered.withColumn("items", F.expr("transform(s, x -> cast(x.itemid as string))"))
     return seqs.filter(F.size("items") >= 2).select("items")
-
 
 def train(spark, silver_dir):
     events = spark.read.parquet(f"{silver_dir}/events_enriched")
@@ -38,7 +36,6 @@ def train(spark, silver_dir):
         F.col("word").cast("long").alias("id"), vector_to_array("vector").alias("vec"))
 
     return base.top_n_neighbors(vectors)
-
 
 def main():
     ap = argparse.ArgumentParser()
@@ -67,7 +64,6 @@ def main():
     print(f"train_item2vec wrote {n} recommendations in {duration:.1f}s")
     if not args.no_log:
         log_run("train_item2vec", n, duration, "success", started)
-
 
 if __name__ == "__main__":
     main()

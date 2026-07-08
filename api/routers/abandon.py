@@ -13,7 +13,6 @@ router = APIRouter()
 _ML = os.path.join(os.path.dirname(__file__), "..", "..", "ml", "abandonment")
 _bundle = None
 
-
 def load_model():
     # called at startup; the model may not be trained yet on a fresh stack, so
     # don't crash the API — just serve 503 from the endpoint until it exists.
@@ -25,7 +24,6 @@ def load_model():
         _bundle = joblib.load(path)
     except FileNotFoundError:
         log.warning("abandonment model not found at %s; /predict-abandon will 503", path)
-
 
 @router.post("/predict-abandon", response_model=AbandonResponse)
 def predict_abandon(feats: AbandonFeatures):

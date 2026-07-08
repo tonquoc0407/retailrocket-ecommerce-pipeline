@@ -13,7 +13,6 @@ from api.schemas import PipelineRun
 
 log = logging.getLogger("api")
 
-
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     configure_logging()
@@ -22,9 +21,7 @@ async def lifespan(app: FastAPI):
     yield
     close_pool()
 
-
 app = FastAPI(title="RetailRocket Intelligence API", lifespan=lifespan)
-
 
 @app.middleware("http")
 async def log_requests(request: Request, call_next):
@@ -38,11 +35,9 @@ async def log_requests(request: Request, call_next):
     })
     return response
 
-
 app.include_router(recommend.router)
 app.include_router(funnel.router)
 app.include_router(abandon.router)
-
 
 @app.get("/pipeline-health", response_model=list[PipelineRun])
 def pipeline_health():
@@ -56,7 +51,6 @@ def pipeline_health():
             order by task_name, started_at desc
         """)
         return [PipelineRun(**r) for r in cur.fetchall()]
-
 
 # /metrics for Prometheus (request latency, count, error rate)
 Instrumentator().instrument(app).expose(app)

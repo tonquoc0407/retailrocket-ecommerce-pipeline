@@ -10,7 +10,6 @@ EVENT_WEIGHTS = {"view": 1, "addtocart": 3, "transaction": 5}
 TOP_N = 20          # related items stored per item
 CANDIDATE_CAP = 3000  # cap the item universe before the O(n^2) similarity join
 
-
 def pg_config():
     host = os.getenv("POSTGRES_HOST", "localhost")
     port = os.getenv("POSTGRES_PORT", "5432")
@@ -24,7 +23,6 @@ def pg_config():
     }
     return url, props
 
-
 def build_implicit_ratings(events):
     weight = F.create_map([F.lit(x) for kv in EVENT_WEIGHTS.items() for x in kv])
     rated = events.withColumn("w", weight[F.col("event")]).filter(F.col("w").isNotNull())
@@ -33,7 +31,6 @@ def build_implicit_ratings(events):
             # ALS needs int ids; visitorid/itemid are well within int range for this data
             .withColumn("visitorid", F.col("visitorid").cast("int"))
             .withColumn("itemid", F.col("itemid").cast("int")))
-
 
 def top_n_neighbors(vectors, top_n=TOP_N):
     # vectors: (id: long, vec: array<double>). cosine similarity between every pair,
@@ -59,7 +56,6 @@ def top_n_neighbors(vectors, top_n=TOP_N):
     w = Window.partitionBy("item_id").orderBy(F.col("score").desc())
     return (both.withColumn("rank", F.row_number().over(w))
             .filter(F.col("rank") <= top_n))
-
 
 def save_recommendations(df, method, url, props):
     import psycopg2

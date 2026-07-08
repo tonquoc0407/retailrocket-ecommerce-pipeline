@@ -10,13 +10,11 @@ import session_builder  # noqa: E402
 
 FIXTURES = os.path.join(os.path.dirname(__file__), "fixtures")
 
-
 @pytest.fixture(scope="module")
 def spark():
     s = SparkSession.builder.master("local[1]").appName("test_session").getOrCreate()
     yield s
     s.stop()
-
 
 def test_gap_splits_sessions(spark):
     # visitor 1: two events 10 min apart (one session), then a 33-min gap opens a

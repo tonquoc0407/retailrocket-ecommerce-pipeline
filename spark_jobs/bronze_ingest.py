@@ -29,10 +29,8 @@ CATEGORY_SCHEMA = StructType([
     StructField("parentid", LongType()),
 ])
 
-
 def read_csv(spark, path, schema):
     return spark.read.csv(path, header=True, schema=schema)
-
 
 def run(spark, raw_dir, out_dir):
     events = read_csv(spark, f"{raw_dir}/events.csv", EVENTS_SCHEMA)
@@ -54,7 +52,6 @@ def run(spark, raw_dir, out_dir):
 
     events_written = spark.read.parquet(f"{out_dir}/events").count()
     return events_written
-
 
 def main():
     ap = argparse.ArgumentParser()
@@ -81,7 +78,6 @@ def main():
     print(f"bronze_ingest wrote {rows} event rows in {duration:.1f}s")
     if not args.no_log:
         log_run("bronze_ingest", rows, duration, "success", started)
-
 
 if __name__ == "__main__":
     main()

@@ -11,27 +11,22 @@ import silver_transform  # noqa: E402
 
 FIXTURES = os.path.join(os.path.dirname(__file__), "fixtures")
 
-
 @pytest.fixture(scope="module")
 def spark():
     s = SparkSession.builder.master("local[1]").appName("test_silver").getOrCreate()
     yield s
     s.stop()
 
-
 def read_events(spark, name):
     df = bronze_ingest.read_csv(spark, f"{FIXTURES}/{name}", bronze_ingest.EVENTS_SCHEMA)
     return df.withColumn("event_date", F.to_date(F.from_unixtime(F.col("timestamp") / 1000)))
 
-
 def read_props(spark, name):
     return bronze_ingest.read_csv(spark, f"{FIXTURES}/{name}", bronze_ingest.ITEM_PROPS_SCHEMA)
-
 
 def test_dedupe_drops_exact_duplicates(spark):
     events = read_events(spark, "silver_dupes.csv")
     assert silver_transform.dedupe_events(events).count() == 2
-
 
 def test_point_in_time_no_future_leak(spark):
     # item 100 changes category: 10 at ts=1000, then 20 at ts=5000

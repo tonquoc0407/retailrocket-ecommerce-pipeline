@@ -17,10 +17,8 @@ default_args = {
     "on_failure_callback": notify_failure,
 }
 
-
 def run_py(script, args=""):
     return f"cd {PROJECT_HOME} && python {script} {args}".strip()
-
 
 with DAG(
     dag_id="retailrocket_pipeline",

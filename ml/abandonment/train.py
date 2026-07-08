@@ -10,7 +10,6 @@ from sklearn.metrics import precision_score, recall_score, roc_auc_score
 HERE = os.path.dirname(__file__)
 REGISTRY = os.path.join(HERE, "..", "model_registry")
 
-
 def build_model(algorithm, params):
     # models live behind one interface (fit/predict/predict_proba) so the training
     # loop below never changes when the algorithm does.
@@ -28,7 +27,6 @@ def build_model(algorithm, params):
         return LogisticRegression(**params)
     raise ValueError(f"unknown algorithm: {algorithm}")
 
-
 def load_sessions():
     conn = psycopg2.connect(
         host=os.getenv("POSTGRES_HOST", "localhost"),
@@ -42,14 +40,12 @@ def load_sessions():
     conn.close()
     return df
 
-
 def time_split(df, test_fraction):
     # split by time, not randomly: train on earlier sessions, test on later ones.
     # a random split would let the model peek at behaviour from the same period it's
     # scored on, overstating how it does on genuinely future traffic.
     cut = int(len(df) * (1 - test_fraction))
     return df.iloc[:cut], df.iloc[cut:]
-
 
 def evaluate(model, X_test, y_test):
     proba = model.predict_proba(X_test)[:, 1]
@@ -59,7 +55,6 @@ def evaluate(model, X_test, y_test):
         "recall": round(recall_score(y_test, pred, zero_division=0), 4),
         "auc": round(roc_auc_score(y_test, proba), 4),
     }
-
 
 def run(cfg, algorithm):
     df = load_sessions()
@@ -78,7 +73,6 @@ def run(cfg, algorithm):
                 os.path.join(REGISTRY, f"abandon_{algorithm}.pkl"))
     return metrics, len(train_df), len(test_df)
 
-
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default=os.path.join(HERE, "config.yaml"))
@@ -92,7 +86,6 @@ def main():
     for algo in algos:
         metrics, n_tr, n_te = run(cfg, algo)
         print(f"{algo:14s} train={n_tr} test={n_te}  {metrics}")
-
 
 if __name__ == "__main__":
     main()
