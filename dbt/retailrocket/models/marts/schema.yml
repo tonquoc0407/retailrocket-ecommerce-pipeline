@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: fct_sessions
+    columns:
+      - name: session_id
+        tests: [not_null, unique]
+      - name: visitorid
+        tests: [not_null]
+
+  - name: fct_funnel
+    columns:
+      - name: categoryid
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_categories')
+              field: categoryid
+      - name: event_date
+        tests: [not_null]
+
+  - name: dim_categories
+    columns:
+      - name: categoryid
+        tests: [not_null, unique]
+
+  - name: dim_items
+    columns:
+      - name: itemid
+        tests: [not_null, unique]
+      - name: categoryid
+        tests:
+          - relationships:
+              to: ref('dim_categories')
+              field: categoryid
+
+  - name: feature_table
+    columns:
+      - name: itemid
+        tests: [not_null, unique]
+
+  - name: feature_cooccur
+    columns:
+      - name: pair_id
+        tests: [not_null, unique]
+      - name: item_a
+        tests: [not_null]
+      - name: item_b
+        tests: [not_null]

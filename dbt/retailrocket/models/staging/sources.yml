@@ -1,0 +1,12 @@
+version: 2
+
+# tables landed in public by spark_jobs/feature_gold.py (JDBC write)
+sources:
+  - name: raw
+    schema: public
+    tables:
+      - name: raw_events
+      - name: raw_sessions
+      - name: raw_category_tree
+      - name: item_latest
+      - name: cooccur_pairs

@@ -86,3 +86,36 @@ Events are then grouped per `(visitorid, session_num)` into one row per session:
 `has_purchase` is what the abandonment model later keys off (a session with an `addtocart`
 but no purchase is the abandonment case).
 
+## Gold (Spark load + dbt)
+
+The Gold layer lives in Postgres and is modeled with dbt. Work is split between Spark and
+dbt on purpose:
+
+**Spark (`spark_jobs/feature_gold.py`)** lands the source tables dbt reads, via JDBC:
+
+- `raw_events`, `raw_sessions`, `raw_category_tree` — copies of the silver/bronze data
+- `item_latest` — the *newest* categoryid snapshot per item (row_number over descending
+  time). This is deliberately the opposite of Silver's point-in-time join: `dim_items`
+  wants an item's current category, not its category at some past event.
+- `cooccur_pairs` — item pairs that co-occur in the same session, split into `view` and
+  `purchase` signals. This is an O(n²) self-join per session, which is why it runs in Spark
+  and not in Postgres SQL. Pairs below `MIN_SUPPORT` are dropped to keep the table small.
+
+**dbt (`dbt/retailrocket/`)** does the declarative modeling and testing. Staging views
+rename/trim the raw tables; marts build the business tables:
+
+| mart | grain | notes |
+|---|---|---|
+| `fct_sessions` | session | adds `duration_seconds` |
+| `fct_funnel` | category × day | view→cart→purchase counts + step conversion rates; null-category events dropped (can't attribute) |
+| `dim_categories` | category | `parentid`, `is_root` |
+| `dim_items` | item | latest category joined to its parent |
+| `feature_table` | item | popularity + item/category conversion — feeds both models |
+| `feature_cooccur` | item pair | co-view/co-purchase weights for the recommender |
+
+`feature_table` is item-grained; the co-occurrence pairs are a different grain so they get
+their own table rather than being forced into item rows.
+
+dbt tests cover `not_null`/`unique` on every primary key and `relationships` from
+`fct_funnel` and `dim_items` back to `dim_categories`.
+

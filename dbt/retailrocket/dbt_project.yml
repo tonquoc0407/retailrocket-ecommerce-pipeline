@@ -1,0 +1,15 @@
+name: retailrocket
+version: '1.0'
+config-version: 2
+
+profile: retailrocket
+
+model-paths: ["models"]
+test-paths: ["tests"]
+
+models:
+  retailrocket:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table

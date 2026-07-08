@@ -1,0 +1,1538 @@
+[0m09:35:38.384437 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fa52e10c2f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fa530180f50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fa52cacb9d0>]}
+
+
+============================== 09:35:38.389231 | 283e1af2-51eb-4967-a8fd-33cc742c468e ==============================
+[0m09:35:38.389231 [info ] [MainThread]: Running with dbt=1.12.0-rc1
+[0m09:35:38.389747 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'profiles_dir': '/home/tondaiquoc/Workspace/Project/RetailRocket_EC_Intelligence_Platform/dbt/retailrocket', 'introspect': 'True', 'indirect_selection': 'eager', 'maximum_seed_size_mib': '1', 'use_colors': 'True', 'fail_fast': 'False', 'write_json': 'True', 'empty': 'False', 'log_path': '/home/tondaiquoc/Workspace/Project/RetailRocket_EC_Intelligence_Platform/dbt/retailrocket/logs', 'partial_parse': 'True', 'debug': 'False', 'version_check': 'True', 'quiet': 'False', 'use_experimental_parser': 'False', 'log_cache_events': 'False', 'target_path': 'None', 'warn_error': 'None', 'no_print': 'None', 'send_anonymous_usage_stats': 'True', 'printer_width': '80', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'cache_selected_only': 'False', 'invocation_command': 'dbt run --project-dir /home/tondaiquoc/Workspace/Project/RetailRocket_EC_Intelligence_Platform/dbt/retailrocket --profiles-dir /home/tondaiquoc/Workspace/Project/RetailRocket_EC_Intelligence_Platform/dbt/retailrocket', 'log_format': 'default'}
+[0m09:35:38.565773 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '283e1af2-51eb-4967-a8fd-33cc742c468e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fa52cd0f230>]}
+[0m09:35:38.624002 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '283e1af2-51eb-4967-a8fd-33cc742c468e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fa52d90d040>]}
+[0m09:35:38.625155 [info ] [MainThread]: Registered adapter: postgres=1.10.2
+[0m09:35:38.711501 [debug] [MainThread]: checksum: ac099baf1f828147a5c49faed74b84d8a6fceb0f09d8be8ad0f9eb5efe3bbe59, vars: {}, profile: retailrocket, target: dev, version: 1.12.0rc1
+[0m09:35:38.712417 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m09:35:38.712809 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '283e1af2-51eb-4967-a8fd-33cc742c468e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fa52bbfc050>]}
+[0m09:35:39.919255 [warn ] [MainThread]: [[33mWARNING[0m][MissingArgumentsPropertyInGenericTestDeprecation]: Deprecated
+functionality
+Found top-level arguments to test `relationships` defined on 'fct_funnel' in
+package 'retailrocket' (models/marts/schema.yml). Arguments to generic tests
+should be nested under the `arguments` property.
+[0m09:35:39.919934 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': '283e1af2-51eb-4967-a8fd-33cc742c468e', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fa529f64410>]}
+[0m09:35:40.093808 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '283e1af2-51eb-4967-a8fd-33cc742c468e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fa529f96dd0>]}
+[0m09:35:40.191495 [debug] [MainThread]: Wrote artifact WritableManifest to /home/tondaiquoc/Workspace/Project/RetailRocket_EC_Intelligence_Platform/dbt/retailrocket/target/manifest.json
+[0m09:35:40.203421 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/tondaiquoc/Workspace/Project/RetailRocket_EC_Intelligence_Platform/dbt/retailrocket/target/semantic_manifest.json
+[0m09:35:40.222834 [debug] [MainThread]: Wrote artifact OsiDocument to /home/tondaiquoc/Workspace/Project/RetailRocket_EC_Intelligence_Platform/dbt/retailrocket/target/osi_document.json
+[0m09:35:40.240026 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '283e1af2-51eb-4967-a8fd-33cc742c468e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fa5283dbee0>]}
+[0m09:35:40.240796 [info ] [MainThread]: Found 11 models, 17 data tests, 5 sources, 475 macros
+[0m09:35:40.241256 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '283e1af2-51eb-4967-a8fd-33cc742c468e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fa528354650>]}
+[0m09:35:40.244126 [info ] [MainThread]: 
+[0m09:35:40.244567 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m09:35:40.244886 [info ] [MainThread]: 
+[0m09:35:40.245400 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m09:35:40.249990 [debug] [ThreadPool]: Acquiring new postgres connection 'list_retailrocket'
+[0m09:35:40.306529 [debug] [ThreadPool]: Using postgres connection "list_retailrocket"
+[0m09:35:40.307245 [debug] [ThreadPool]: On list_retailrocket: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "connection_name": "list_retailrocket"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m09:35:40.307772 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m09:35:40.317033 [debug] [ThreadPool]: SQL status: SELECT 4 in 0.009 seconds
+[0m09:35:40.319077 [debug] [ThreadPool]: On list_retailrocket: Close
+[0m09:35:40.320383 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_retailrocket, now create_retailrocket_gold)
+[0m09:35:40.321186 [debug] [ThreadPool]: Creating schema "database: "retailrocket"
+schema: "gold"
+"
+[0m09:35:40.327139 [debug] [ThreadPool]: Using postgres connection "create_retailrocket_gold"
+[0m09:35:40.327702 [debug] [ThreadPool]: On create_retailrocket_gold: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "connection_name": "create_retailrocket_gold"} */
+create schema if not exists "gold"
+[0m09:35:40.328106 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m09:35:40.333856 [debug] [ThreadPool]: SQL status: CREATE SCHEMA in 0.006 seconds
+[0m09:35:40.335230 [debug] [ThreadPool]: On create_retailrocket_gold: COMMIT
+[0m09:35:40.335619 [debug] [ThreadPool]: Using postgres connection "create_retailrocket_gold"
+[0m09:35:40.335968 [debug] [ThreadPool]: On create_retailrocket_gold: COMMIT
+[0m09:35:40.336686 [debug] [ThreadPool]: SQL status: COMMIT in 0.000 seconds
+[0m09:35:40.337134 [debug] [ThreadPool]: On create_retailrocket_gold: Close
+[0m09:35:40.339328 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly create_retailrocket_gold, now list_retailrocket_gold)
+[0m09:35:40.345287 [debug] [ThreadPool]: Using postgres connection "list_retailrocket_gold"
+[0m09:35:40.345794 [debug] [ThreadPool]: On list_retailrocket_gold: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "connection_name": "list_retailrocket_gold"} */
+select
+      'retailrocket' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'gold'
+    union all
+    select
+      'retailrocket' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'gold'
+    union all
+    select
+      'retailrocket' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'gold'
+  
+[0m09:35:40.346173 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m09:35:40.355271 [debug] [ThreadPool]: SQL status: SELECT 0 in 0.009 seconds
+[0m09:35:40.357898 [debug] [ThreadPool]: On list_retailrocket_gold: ROLLBACK
+[0m09:35:40.358559 [debug] [ThreadPool]: On list_retailrocket_gold: Close
+[0m09:35:40.363728 [debug] [MainThread]: Using postgres connection "master"
+[0m09:35:40.364282 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "connection_name": "master"} */
+select distinct
+        dependent_namespace.nspname as dependent_schema,
+        dependent_class.relname as dependent_name,
+        referenced_namespace.nspname as referenced_schema,
+        referenced_class.relname as referenced_name
+
+    -- Query for views: views are entries in pg_class with an entry in pg_rewrite, but we avoid
+    -- a seq scan on pg_rewrite by leveraging the fact there is an "internal" row in pg_depend for
+    -- the view...
+    from pg_class as dependent_class
+    join pg_namespace as dependent_namespace on dependent_namespace.oid = dependent_class.relnamespace
+    join pg_depend as dependent_depend on dependent_depend.refobjid = dependent_class.oid
+        and dependent_depend.classid = 'pg_rewrite'::regclass
+        and dependent_depend.refclassid = 'pg_class'::regclass
+        and dependent_depend.deptype = 'i'
+
+    -- ... and via pg_depend (that has a row per column, hence the need for "distinct" above, and
+    -- making sure to exclude the internal row to avoid a view appearing to depend on itself)...
+    join pg_depend as joining_depend on joining_depend.objid = dependent_depend.objid
+        and joining_depend.classid = 'pg_rewrite'::regclass
+        and joining_depend.refclassid = 'pg_class'::regclass
+        and joining_depend.refobjid != dependent_depend.refobjid
+
+    -- ... we can find the tables they query from in pg_class, but excluding system tables. Note we
+    -- don't need need to exclude _dependent_ system tables, because they only query from other
+    -- system tables, and so are automatically excluded by excluding _referenced_ system tables
+    join pg_class as referenced_class on referenced_class.oid = joining_depend.refobjid
+    join pg_namespace as referenced_namespace on referenced_namespace.oid = referenced_class.relnamespace
+        and referenced_namespace.nspname != 'information_schema'
+        and referenced_namespace.nspname not like 'pg\_%'
+
+    order by
+        dependent_schema, dependent_name, referenced_schema, referenced_name;
+[0m09:35:40.364672 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m09:35:40.372820 [debug] [MainThread]: SQL status: SELECT 0 in 0.008 seconds
+[0m09:35:40.374514 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '283e1af2-51eb-4967-a8fd-33cc742c468e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fa528265c80>]}
+[0m09:35:40.375297 [debug] [MainThread]: On master: ROLLBACK
+[0m09:35:40.375893 [debug] [MainThread]: On master: COMMIT
+[0m09:35:40.376246 [debug] [MainThread]: Using postgres connection "master"
+[0m09:35:40.376540 [debug] [MainThread]: On master: COMMIT
+[0m09:35:40.376956 [debug] [MainThread]: SQL status: COMMIT in 0.000 seconds
+[0m09:35:40.377261 [debug] [MainThread]: On master: Close
+[0m09:35:40.380766 [debug] [Thread-2 (]: Began running node model.retailrocket.stg_cooccur
+[0m09:35:40.381446 [debug] [Thread-4 (]: Began running node model.retailrocket.stg_item_latest
+[0m09:35:40.381878 [debug] [Thread-3 (]: Began running node model.retailrocket.stg_events
+[0m09:35:40.382278 [debug] [Thread-1 (]: Began running node model.retailrocket.stg_category_tree
+[0m09:35:40.382868 [info ] [Thread-2 (]: 2 of 11 START sql view model gold.stg_cooccur .................................. [RUN]
+[0m09:35:40.383530 [info ] [Thread-4 (]: 4 of 11 START sql view model gold.stg_item_latest .............................. [RUN]
+[0m09:35:40.384202 [info ] [Thread-3 (]: 3 of 11 START sql view model gold.stg_events ................................... [RUN]
+[0m09:35:40.384694 [info ] [Thread-1 (]: 1 of 11 START sql view model gold.stg_category_tree ............................ [RUN]
+[0m09:35:40.385294 [debug] [Thread-2 (]: Acquiring new postgres connection 'model.retailrocket.stg_cooccur'
+[0m09:35:40.385839 [debug] [Thread-4 (]: Acquiring new postgres connection 'model.retailrocket.stg_item_latest'
+[0m09:35:40.387766 [debug] [Thread-4 (]: Began compiling node model.retailrocket.stg_item_latest
+[0m09:35:40.386915 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_retailrocket_gold, now model.retailrocket.stg_category_tree)
+[0m09:35:40.387354 [debug] [Thread-2 (]: Began compiling node model.retailrocket.stg_cooccur
+[0m09:35:40.386434 [debug] [Thread-3 (]: Acquiring new postgres connection 'model.retailrocket.stg_events'
+[0m09:35:40.395057 [debug] [Thread-4 (]: Writing injected SQL for node "model.retailrocket.stg_item_latest"
+[0m09:35:40.395697 [debug] [Thread-1 (]: Began compiling node model.retailrocket.stg_category_tree
+[0m09:35:40.401712 [debug] [Thread-1 (]: Writing injected SQL for node "model.retailrocket.stg_category_tree"
+[0m09:35:40.399176 [debug] [Thread-3 (]: Began compiling node model.retailrocket.stg_events
+[0m09:35:40.398570 [debug] [Thread-2 (]: Writing injected SQL for node "model.retailrocket.stg_cooccur"
+[0m09:35:40.404505 [debug] [Thread-3 (]: Writing injected SQL for node "model.retailrocket.stg_events"
+[0m09:35:40.405315 [debug] [Thread-2 (]: Began executing node model.retailrocket.stg_cooccur
+[0m09:35:40.405709 [debug] [Thread-3 (]: Began executing node model.retailrocket.stg_events
+[0m09:35:40.411429 [debug] [Thread-1 (]: Began executing node model.retailrocket.stg_category_tree
+[0m09:35:40.437742 [debug] [Thread-4 (]: Began executing node model.retailrocket.stg_item_latest
+[0m09:35:40.464288 [debug] [Thread-2 (]: Writing runtime sql for node "model.retailrocket.stg_cooccur"
+[0m09:35:40.465294 [debug] [Thread-3 (]: Writing runtime sql for node "model.retailrocket.stg_events"
+[0m09:35:40.467742 [debug] [Thread-1 (]: Writing runtime sql for node "model.retailrocket.stg_category_tree"
+[0m09:35:40.472164 [debug] [Thread-4 (]: Writing runtime sql for node "model.retailrocket.stg_item_latest"
+[0m09:35:40.473684 [debug] [Thread-4 (]: Using postgres connection "model.retailrocket.stg_item_latest"
+[0m09:35:40.474677 [debug] [Thread-4 (]: On model.retailrocket.stg_item_latest: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.stg_item_latest"} */
+
+  create view "retailrocket"."gold"."stg_item_latest__dbt_tmp"
+    
+    
+  as (
+    select
+    itemid,
+    categoryid
+from "retailrocket"."public"."item_latest"
+  );
+[0m09:35:40.475062 [debug] [Thread-4 (]: Opening a new connection, currently in state init
+[0m09:35:40.474252 [debug] [Thread-3 (]: Using postgres connection "model.retailrocket.stg_events"
+[0m09:35:40.475534 [debug] [Thread-3 (]: On model.retailrocket.stg_events: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.stg_events"} */
+
+  create view "retailrocket"."gold"."stg_events__dbt_tmp"
+    
+    
+  as (
+    select
+    visitorid,
+    event,
+    itemid,
+    categoryid,
+    event_date
+from "retailrocket"."public"."raw_events"
+  );
+[0m09:35:40.476879 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m09:35:40.476530 [debug] [Thread-2 (]: Using postgres connection "model.retailrocket.stg_cooccur"
+[0m09:35:40.477504 [debug] [Thread-2 (]: On model.retailrocket.stg_cooccur: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.stg_cooccur"} */
+
+  create view "retailrocket"."gold"."stg_cooccur__dbt_tmp"
+    
+    
+  as (
+    select
+    item_a,
+    item_b,
+    pair_type,
+    weight
+from "retailrocket"."public"."cooccur_pairs"
+  );
+[0m09:35:40.475995 [debug] [Thread-1 (]: Using postgres connection "model.retailrocket.stg_category_tree"
+[0m09:35:40.478496 [debug] [Thread-1 (]: On model.retailrocket.stg_category_tree: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.stg_category_tree"} */
+
+  create view "retailrocket"."gold"."stg_category_tree__dbt_tmp"
+    
+    
+  as (
+    select
+    categoryid,
+    parentid
+from "retailrocket"."public"."raw_category_tree"
+  );
+[0m09:35:40.478871 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m09:35:40.478002 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m09:35:40.480827 [debug] [Thread-4 (]: SQL status: CREATE VIEW in 0.006 seconds
+[0m09:35:40.488112 [debug] [Thread-3 (]: SQL status: CREATE VIEW in 0.011 seconds
+[0m09:35:40.493898 [debug] [Thread-3 (]: Using postgres connection "model.retailrocket.stg_events"
+[0m09:35:40.490161 [debug] [Thread-4 (]: Using postgres connection "model.retailrocket.stg_item_latest"
+[0m09:35:40.495234 [debug] [Thread-4 (]: On model.retailrocket.stg_item_latest: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.stg_item_latest"} */
+alter table "retailrocket"."gold"."stg_item_latest__dbt_tmp" rename to "stg_item_latest"
+[0m09:35:40.494671 [debug] [Thread-3 (]: On model.retailrocket.stg_events: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.stg_events"} */
+alter table "retailrocket"."gold"."stg_events__dbt_tmp" rename to "stg_events"
+[0m09:35:40.496114 [debug] [Thread-4 (]: SQL status: ALTER TABLE in 0.000 seconds
+[0m09:35:40.496527 [debug] [Thread-1 (]: SQL status: CREATE VIEW in 0.018 seconds
+[0m09:35:40.496908 [debug] [Thread-3 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m09:35:40.510588 [debug] [Thread-1 (]: Using postgres connection "model.retailrocket.stg_category_tree"
+[0m09:35:40.511015 [debug] [Thread-2 (]: SQL status: CREATE VIEW in 0.033 seconds
+[0m09:35:40.523329 [debug] [Thread-4 (]: On model.retailrocket.stg_item_latest: COMMIT
+[0m09:35:40.525367 [debug] [Thread-3 (]: On model.retailrocket.stg_events: COMMIT
+[0m09:35:40.526093 [debug] [Thread-1 (]: On model.retailrocket.stg_category_tree: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.stg_category_tree"} */
+alter table "retailrocket"."gold"."stg_category_tree__dbt_tmp" rename to "stg_category_tree"
+[0m09:35:40.530037 [debug] [Thread-2 (]: Using postgres connection "model.retailrocket.stg_cooccur"
+[0m09:35:40.531602 [debug] [Thread-2 (]: On model.retailrocket.stg_cooccur: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.stg_cooccur"} */
+alter table "retailrocket"."gold"."stg_cooccur__dbt_tmp" rename to "stg_cooccur"
+[0m09:35:40.531111 [debug] [Thread-3 (]: Using postgres connection "model.retailrocket.stg_events"
+[0m09:35:40.530564 [debug] [Thread-4 (]: Using postgres connection "model.retailrocket.stg_item_latest"
+[0m09:35:40.533289 [debug] [Thread-4 (]: On model.retailrocket.stg_item_latest: COMMIT
+[0m09:35:40.532421 [debug] [Thread-3 (]: On model.retailrocket.stg_events: COMMIT
+[0m09:35:40.532822 [debug] [Thread-2 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m09:35:40.532081 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m09:35:40.537451 [debug] [Thread-1 (]: On model.retailrocket.stg_category_tree: COMMIT
+[0m09:35:40.535633 [debug] [Thread-3 (]: SQL status: COMMIT in 0.002 seconds
+[0m09:35:40.536089 [debug] [Thread-4 (]: SQL status: COMMIT in 0.002 seconds
+[0m09:35:40.535186 [debug] [Thread-2 (]: On model.retailrocket.stg_cooccur: COMMIT
+[0m09:35:40.537793 [debug] [Thread-1 (]: Using postgres connection "model.retailrocket.stg_category_tree"
+[0m09:35:40.553269 [debug] [Thread-4 (]: Applying DROP to: "retailrocket"."gold"."stg_item_latest__dbt_backup"
+[0m09:35:40.560191 [debug] [Thread-4 (]: Using postgres connection "model.retailrocket.stg_item_latest"
+[0m09:35:40.555395 [debug] [Thread-2 (]: Using postgres connection "model.retailrocket.stg_cooccur"
+[0m09:35:40.555811 [debug] [Thread-1 (]: On model.retailrocket.stg_category_tree: COMMIT
+[0m09:35:40.554733 [debug] [Thread-3 (]: Applying DROP to: "retailrocket"."gold"."stg_events__dbt_backup"
+[0m09:35:40.562003 [debug] [Thread-3 (]: Using postgres connection "model.retailrocket.stg_events"
+[0m09:35:40.561114 [debug] [Thread-2 (]: On model.retailrocket.stg_cooccur: COMMIT
+[0m09:35:40.562436 [debug] [Thread-1 (]: SQL status: COMMIT in 0.001 seconds
+[0m09:35:40.560710 [debug] [Thread-4 (]: On model.retailrocket.stg_item_latest: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.stg_item_latest"} */
+drop view if exists "retailrocket"."gold"."stg_item_latest__dbt_backup" cascade
+[0m09:35:40.562824 [debug] [Thread-3 (]: On model.retailrocket.stg_events: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.stg_events"} */
+drop view if exists "retailrocket"."gold"."stg_events__dbt_backup" cascade
+[0m09:35:40.565355 [debug] [Thread-1 (]: Applying DROP to: "retailrocket"."gold"."stg_category_tree__dbt_backup"
+[0m09:35:40.566691 [debug] [Thread-1 (]: Using postgres connection "model.retailrocket.stg_category_tree"
+[0m09:35:40.567398 [debug] [Thread-1 (]: On model.retailrocket.stg_category_tree: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.stg_category_tree"} */
+drop view if exists "retailrocket"."gold"."stg_category_tree__dbt_backup" cascade
+[0m09:35:40.565767 [debug] [Thread-2 (]: SQL status: COMMIT in 0.003 seconds
+[0m09:35:40.567061 [debug] [Thread-3 (]: SQL status: DROP VIEW in 0.001 seconds
+[0m09:35:40.567761 [debug] [Thread-4 (]: SQL status: DROP VIEW in 0.002 seconds
+[0m09:35:40.568154 [debug] [Thread-1 (]: SQL status: DROP VIEW in 0.000 seconds
+[0m09:35:40.571035 [debug] [Thread-2 (]: Applying DROP to: "retailrocket"."gold"."stg_cooccur__dbt_backup"
+[0m09:35:40.573610 [debug] [Thread-3 (]: On model.retailrocket.stg_events: Close
+[0m09:35:40.574940 [debug] [Thread-4 (]: On model.retailrocket.stg_item_latest: Close
+[0m09:35:40.576171 [debug] [Thread-1 (]: On model.retailrocket.stg_category_tree: Close
+[0m09:35:40.577062 [debug] [Thread-2 (]: Using postgres connection "model.retailrocket.stg_cooccur"
+[0m09:35:40.577595 [debug] [Thread-2 (]: On model.retailrocket.stg_cooccur: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.stg_cooccur"} */
+drop view if exists "retailrocket"."gold"."stg_cooccur__dbt_backup" cascade
+[0m09:35:40.581178 [debug] [Thread-2 (]: SQL status: DROP VIEW in 0.001 seconds
+[0m09:35:40.582868 [debug] [Thread-2 (]: On model.retailrocket.stg_cooccur: Close
+[0m09:35:40.583781 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '283e1af2-51eb-4967-a8fd-33cc742c468e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fa51b680370>]}
+[0m09:35:40.585490 [info ] [Thread-3 (]: 3 of 11 OK created sql view model gold.stg_events .............................. [[32mCREATE VIEW[0m in 0.19s]
+[0m09:35:40.584686 [debug] [Thread-4 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '283e1af2-51eb-4967-a8fd-33cc742c468e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fa51b73ee50>]}
+[0m09:35:40.584223 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '283e1af2-51eb-4967-a8fd-33cc742c468e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fa51b519e20>]}
+[0m09:35:40.585883 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '283e1af2-51eb-4967-a8fd-33cc742c468e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fa51b54fe70>]}
+[0m09:35:40.586401 [debug] [Thread-3 (]: Finished running node model.retailrocket.stg_events
+[0m09:35:40.587297 [info ] [Thread-4 (]: 4 of 11 OK created sql view model gold.stg_item_latest ......................... [[32mCREATE VIEW[0m in 0.20s]
+[0m09:35:40.588163 [info ] [Thread-1 (]: 1 of 11 OK created sql view model gold.stg_category_tree ....................... [[32mCREATE VIEW[0m in 0.19s]
+[0m09:35:40.588865 [info ] [Thread-2 (]: 2 of 11 OK created sql view model gold.stg_cooccur ............................. [[32mCREATE VIEW[0m in 0.20s]
+[0m09:35:40.589491 [debug] [Thread-3 (]: Began running node model.retailrocket.stg_sessions
+[0m09:35:40.590436 [debug] [Thread-4 (]: Finished running node model.retailrocket.stg_item_latest
+[0m09:35:40.591304 [debug] [Thread-1 (]: Finished running node model.retailrocket.stg_category_tree
+[0m09:35:40.591901 [debug] [Thread-2 (]: Finished running node model.retailrocket.stg_cooccur
+[0m09:35:40.592385 [info ] [Thread-3 (]: 5 of 11 START sql view model gold.stg_sessions ................................. [RUN]
+[0m09:35:40.594655 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly model.retailrocket.stg_events, now model.retailrocket.stg_sessions)
+[0m09:35:40.594096 [debug] [Thread-2 (]: Began running node model.retailrocket.dim_items
+[0m09:35:40.593107 [debug] [Thread-4 (]: Began running node model.retailrocket.fct_funnel
+[0m09:35:40.595131 [debug] [Thread-1 (]: Began running node model.retailrocket.dim_categories
+[0m09:35:40.595636 [debug] [Thread-3 (]: Began compiling node model.retailrocket.stg_sessions
+[0m09:35:40.596203 [info ] [Thread-2 (]: 8 of 11 START sql table model gold.dim_items ................................... [RUN]
+[0m09:35:40.596705 [info ] [Thread-4 (]: 6 of 11 START sql table model gold.fct_funnel .................................. [RUN]
+[0m09:35:40.597197 [info ] [Thread-1 (]: 7 of 11 START sql table model gold.dim_categories .............................. [RUN]
+[0m09:35:40.599998 [debug] [Thread-3 (]: Writing injected SQL for node "model.retailrocket.stg_sessions"
+[0m09:35:40.600603 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly model.retailrocket.stg_cooccur, now model.retailrocket.dim_items)
+[0m09:35:40.602160 [debug] [Thread-2 (]: Began compiling node model.retailrocket.dim_items
+[0m09:35:40.604719 [debug] [Thread-2 (]: Writing injected SQL for node "model.retailrocket.dim_items"
+[0m09:35:40.601084 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly model.retailrocket.stg_item_latest, now model.retailrocket.fct_funnel)
+[0m09:35:40.601620 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.retailrocket.stg_category_tree, now model.retailrocket.dim_categories)
+[0m09:35:40.606264 [debug] [Thread-1 (]: Began compiling node model.retailrocket.dim_categories
+[0m09:35:40.609713 [debug] [Thread-1 (]: Writing injected SQL for node "model.retailrocket.dim_categories"
+[0m09:35:40.605220 [debug] [Thread-3 (]: Began executing node model.retailrocket.stg_sessions
+[0m09:35:40.605837 [debug] [Thread-4 (]: Began compiling node model.retailrocket.fct_funnel
+[0m09:35:40.610277 [debug] [Thread-2 (]: Began executing node model.retailrocket.dim_items
+[0m09:35:40.613733 [debug] [Thread-3 (]: Writing runtime sql for node "model.retailrocket.stg_sessions"
+[0m09:35:40.617563 [debug] [Thread-4 (]: Writing injected SQL for node "model.retailrocket.fct_funnel"
+[0m09:35:40.618536 [debug] [Thread-1 (]: Began executing node model.retailrocket.dim_categories
+[0m09:35:40.645237 [debug] [Thread-1 (]: Writing runtime sql for node "model.retailrocket.dim_categories"
+[0m09:35:40.640918 [debug] [Thread-3 (]: Using postgres connection "model.retailrocket.stg_sessions"
+[0m09:35:40.646529 [debug] [Thread-3 (]: On model.retailrocket.stg_sessions: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.stg_sessions"} */
+
+  create view "retailrocket"."gold"."stg_sessions__dbt_tmp"
+    
+    
+  as (
+    select
+    session_id,
+    visitorid,
+    start_time,
+    end_time,
+    event_count,
+    has_purchase
+from "retailrocket"."public"."raw_sessions"
+  );
+[0m09:35:40.640310 [debug] [Thread-2 (]: Writing runtime sql for node "model.retailrocket.dim_items"
+[0m09:35:40.647531 [debug] [Thread-1 (]: Using postgres connection "model.retailrocket.dim_categories"
+[0m09:35:40.645905 [debug] [Thread-4 (]: Began executing node model.retailrocket.fct_funnel
+[0m09:35:40.646904 [debug] [Thread-3 (]: Opening a new connection, currently in state closed
+[0m09:35:40.647919 [debug] [Thread-1 (]: On model.retailrocket.dim_categories: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.dim_categories"} */
+
+  
+    
+
+  create  table "retailrocket"."gold"."dim_categories__dbt_tmp"
+  
+  
+    as
+  
+  (
+    select
+    categoryid,
+    parentid,
+    parentid is null as is_root
+from "retailrocket"."gold"."stg_category_tree"
+  );
+  
+[0m09:35:40.648286 [debug] [Thread-2 (]: Using postgres connection "model.retailrocket.dim_items"
+[0m09:35:40.652875 [debug] [Thread-2 (]: On model.retailrocket.dim_items: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.dim_items"} */
+
+  
+    
+
+  create  table "retailrocket"."gold"."dim_items__dbt_tmp"
+  
+  
+    as
+  
+  (
+    -- item dimension: latest category per item, joined to its category's parent
+select
+    i.itemid,
+    i.categoryid,
+    c.parentid
+from "retailrocket"."gold"."stg_item_latest" i
+left join "retailrocket"."gold"."stg_category_tree" c on i.categoryid = c.categoryid
+  );
+  
+[0m09:35:40.653516 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m09:35:40.651676 [debug] [Thread-4 (]: Writing runtime sql for node "model.retailrocket.fct_funnel"
+[0m09:35:40.652257 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m09:35:40.654441 [debug] [Thread-4 (]: Using postgres connection "model.retailrocket.fct_funnel"
+[0m09:35:40.654931 [debug] [Thread-4 (]: On model.retailrocket.fct_funnel: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.fct_funnel"} */
+
+  
+    
+
+  create  table "retailrocket"."gold"."fct_funnel__dbt_tmp"
+  
+  
+    as
+  
+  (
+    -- view -> cart -> purchase counts per category per day, with the two step
+-- conversion rates. events with no category (predate the item's first snapshot)
+-- can't be attributed, so they're dropped here.
+with counts as (
+    select
+        categoryid,
+        event_date,
+        count(*) filter (where event = 'view') as views,
+        count(*) filter (where event = 'addtocart') as carts,
+        count(*) filter (where event = 'transaction') as purchases
+    from "retailrocket"."gold"."stg_events"
+    where categoryid is not null
+    group by categoryid, event_date
+)
+
+select
+    categoryid,
+    event_date,
+    views,
+    carts,
+    purchases,
+    case when views > 0 then carts::float / views else 0 end as cart_rate,
+    case when carts > 0 then purchases::float / carts else 0 end as purchase_rate
+from counts
+  );
+  
+[0m09:35:40.655428 [debug] [Thread-4 (]: Opening a new connection, currently in state closed
+[0m09:35:40.657534 [debug] [Thread-3 (]: SQL status: CREATE VIEW in 0.011 seconds
+[0m09:35:40.661228 [debug] [Thread-3 (]: Using postgres connection "model.retailrocket.stg_sessions"
+[0m09:35:40.662825 [debug] [Thread-3 (]: On model.retailrocket.stg_sessions: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.stg_sessions"} */
+alter table "retailrocket"."gold"."stg_sessions__dbt_tmp" rename to "stg_sessions"
+[0m09:35:40.662197 [debug] [Thread-1 (]: SQL status: SELECT 3 in 0.010 seconds
+[0m09:35:40.661673 [debug] [Thread-2 (]: SQL status: SELECT 3 in 0.008 seconds
+[0m09:35:40.669859 [debug] [Thread-1 (]: Using postgres connection "model.retailrocket.dim_categories"
+[0m09:35:40.670468 [debug] [Thread-4 (]: SQL status: SELECT 3 in 0.015 seconds
+[0m09:35:40.670993 [debug] [Thread-3 (]: SQL status: ALTER TABLE in 0.008 seconds
+[0m09:35:40.674900 [debug] [Thread-2 (]: Using postgres connection "model.retailrocket.dim_items"
+[0m09:35:40.675562 [debug] [Thread-1 (]: On model.retailrocket.dim_categories: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.dim_categories"} */
+alter table "retailrocket"."gold"."dim_categories__dbt_tmp" rename to "dim_categories"
+[0m09:35:40.679078 [debug] [Thread-4 (]: Using postgres connection "model.retailrocket.fct_funnel"
+[0m09:35:40.682285 [debug] [Thread-4 (]: On model.retailrocket.fct_funnel: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.fct_funnel"} */
+alter table "retailrocket"."gold"."fct_funnel__dbt_tmp" rename to "fct_funnel"
+[0m09:35:40.681579 [debug] [Thread-2 (]: On model.retailrocket.dim_items: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.dim_items"} */
+alter table "retailrocket"."gold"."dim_items__dbt_tmp" rename to "dim_items"
+[0m09:35:40.682838 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m09:35:40.681056 [debug] [Thread-3 (]: On model.retailrocket.stg_sessions: COMMIT
+[0m09:35:40.685723 [debug] [Thread-3 (]: Using postgres connection "model.retailrocket.stg_sessions"
+[0m09:35:40.686260 [debug] [Thread-3 (]: On model.retailrocket.stg_sessions: COMMIT
+[0m09:35:40.685288 [debug] [Thread-4 (]: SQL status: ALTER TABLE in 0.002 seconds
+[0m09:35:40.684528 [debug] [Thread-1 (]: On model.retailrocket.dim_categories: COMMIT
+[0m09:35:40.684939 [debug] [Thread-2 (]: SQL status: ALTER TABLE in 0.002 seconds
+[0m09:35:40.690496 [debug] [Thread-2 (]: On model.retailrocket.dim_items: COMMIT
+[0m09:35:40.688411 [debug] [Thread-3 (]: SQL status: COMMIT in 0.002 seconds
+[0m09:35:40.688802 [debug] [Thread-1 (]: Using postgres connection "model.retailrocket.dim_categories"
+[0m09:35:40.687927 [debug] [Thread-4 (]: On model.retailrocket.fct_funnel: COMMIT
+[0m09:35:40.690823 [debug] [Thread-2 (]: Using postgres connection "model.retailrocket.dim_items"
+[0m09:35:40.693935 [debug] [Thread-3 (]: Applying DROP to: "retailrocket"."gold"."stg_sessions__dbt_backup"
+[0m09:35:40.694383 [debug] [Thread-1 (]: On model.retailrocket.dim_categories: COMMIT
+[0m09:35:40.694908 [debug] [Thread-4 (]: Using postgres connection "model.retailrocket.fct_funnel"
+[0m09:35:40.695407 [debug] [Thread-2 (]: On model.retailrocket.dim_items: COMMIT
+[0m09:35:40.696596 [debug] [Thread-3 (]: Using postgres connection "model.retailrocket.stg_sessions"
+[0m09:35:40.698422 [debug] [Thread-3 (]: On model.retailrocket.stg_sessions: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.stg_sessions"} */
+drop view if exists "retailrocket"."gold"."stg_sessions__dbt_backup" cascade
+[0m09:35:40.697886 [debug] [Thread-1 (]: SQL status: COMMIT in 0.001 seconds
+[0m09:35:40.701488 [debug] [Thread-1 (]: Applying DROP to: "retailrocket"."gold"."dim_categories__dbt_backup"
+[0m09:35:40.697235 [debug] [Thread-4 (]: On model.retailrocket.fct_funnel: COMMIT
+[0m09:35:40.702046 [debug] [Thread-3 (]: SQL status: DROP VIEW in 0.003 seconds
+[0m09:35:40.698893 [debug] [Thread-2 (]: SQL status: COMMIT in 0.001 seconds
+[0m09:35:40.704779 [debug] [Thread-1 (]: Using postgres connection "model.retailrocket.dim_categories"
+[0m09:35:40.706214 [debug] [Thread-3 (]: On model.retailrocket.stg_sessions: Close
+[0m09:35:40.706664 [debug] [Thread-4 (]: SQL status: COMMIT in 0.001 seconds
+[0m09:35:40.712378 [debug] [Thread-4 (]: Applying DROP to: "retailrocket"."gold"."fct_funnel__dbt_backup"
+[0m09:35:40.709423 [debug] [Thread-1 (]: On model.retailrocket.dim_categories: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.dim_categories"} */
+drop table if exists "retailrocket"."gold"."dim_categories__dbt_backup" cascade
+[0m09:35:40.713096 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '283e1af2-51eb-4967-a8fd-33cc742c468e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fa51b5835f0>]}
+[0m09:35:40.709008 [debug] [Thread-2 (]: Applying DROP to: "retailrocket"."gold"."dim_items__dbt_backup"
+[0m09:35:40.714234 [debug] [Thread-4 (]: Using postgres connection "model.retailrocket.fct_funnel"
+[0m09:35:40.715090 [info ] [Thread-3 (]: 5 of 11 OK created sql view model gold.stg_sessions ............................ [[32mCREATE VIEW[0m in 0.12s]
+[0m09:35:40.715598 [debug] [Thread-1 (]: SQL status: DROP TABLE in 0.001 seconds
+[0m09:35:40.716627 [debug] [Thread-2 (]: Using postgres connection "model.retailrocket.dim_items"
+[0m09:35:40.717160 [debug] [Thread-4 (]: On model.retailrocket.fct_funnel: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.fct_funnel"} */
+drop table if exists "retailrocket"."gold"."fct_funnel__dbt_backup" cascade
+[0m09:35:40.717891 [debug] [Thread-3 (]: Finished running node model.retailrocket.stg_sessions
+[0m09:35:40.721112 [debug] [Thread-3 (]: Began running node model.retailrocket.feature_table
+[0m09:35:40.720339 [debug] [Thread-2 (]: On model.retailrocket.dim_items: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.dim_items"} */
+drop table if exists "retailrocket"."gold"."dim_items__dbt_backup" cascade
+[0m09:35:40.721751 [debug] [Thread-4 (]: SQL status: DROP TABLE in 0.001 seconds
+[0m09:35:40.725238 [debug] [Thread-4 (]: On model.retailrocket.fct_funnel: Close
+[0m09:35:40.719674 [debug] [Thread-1 (]: On model.retailrocket.dim_categories: Close
+[0m09:35:40.725715 [debug] [Thread-2 (]: SQL status: DROP TABLE in 0.003 seconds
+[0m09:35:40.722472 [info ] [Thread-3 (]: 9 of 11 START sql table model gold.feature_table ............................... [RUN]
+[0m09:35:40.727579 [debug] [Thread-2 (]: On model.retailrocket.dim_items: Close
+[0m09:35:40.728303 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '283e1af2-51eb-4967-a8fd-33cc742c468e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fa51b581490>]}
+[0m09:35:40.730878 [info ] [Thread-1 (]: 7 of 11 OK created sql table model gold.dim_categories ......................... [[32mSELECT 3[0m in 0.13s]
+[0m09:35:40.729634 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly model.retailrocket.stg_sessions, now model.retailrocket.feature_table)
+[0m09:35:40.733153 [debug] [Thread-3 (]: Began compiling node model.retailrocket.feature_table
+[0m09:35:40.728981 [debug] [Thread-4 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '283e1af2-51eb-4967-a8fd-33cc742c468e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fa51b580530>]}
+[0m09:35:40.732563 [debug] [Thread-1 (]: Finished running node model.retailrocket.dim_categories
+[0m09:35:40.731648 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '283e1af2-51eb-4967-a8fd-33cc742c468e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fa51b5838f0>]}
+[0m09:35:40.737634 [debug] [Thread-3 (]: Writing injected SQL for node "model.retailrocket.feature_table"
+[0m09:35:40.738687 [info ] [Thread-4 (]: 6 of 11 OK created sql table model gold.fct_funnel ............................. [[32mSELECT 3[0m in 0.13s]
+[0m09:35:40.739379 [debug] [Thread-1 (]: Began running node model.retailrocket.feature_cooccur
+[0m09:35:40.741925 [info ] [Thread-1 (]: 10 of 11 START sql table model gold.feature_cooccur ............................ [RUN]
+[0m09:35:40.742599 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.retailrocket.dim_categories, now model.retailrocket.feature_cooccur)
+[0m09:35:40.740291 [info ] [Thread-2 (]: 8 of 11 OK created sql table model gold.dim_items .............................. [[32mSELECT 3[0m in 0.13s]
+[0m09:35:40.741229 [debug] [Thread-4 (]: Finished running node model.retailrocket.fct_funnel
+[0m09:35:40.743113 [debug] [Thread-3 (]: Began executing node model.retailrocket.feature_table
+[0m09:35:40.743497 [debug] [Thread-1 (]: Began compiling node model.retailrocket.feature_cooccur
+[0m09:35:40.744101 [debug] [Thread-2 (]: Finished running node model.retailrocket.dim_items
+[0m09:35:40.744740 [debug] [Thread-4 (]: Began running node model.retailrocket.fct_sessions
+[0m09:35:40.749298 [debug] [Thread-3 (]: Writing runtime sql for node "model.retailrocket.feature_table"
+[0m09:35:40.752415 [debug] [Thread-1 (]: Writing injected SQL for node "model.retailrocket.feature_cooccur"
+[0m09:35:40.753412 [info ] [Thread-4 (]: 11 of 11 START sql table model gold.fct_sessions ............................... [RUN]
+[0m09:35:40.754150 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly model.retailrocket.fct_funnel, now model.retailrocket.fct_sessions)
+[0m09:35:40.754562 [debug] [Thread-4 (]: Began compiling node model.retailrocket.fct_sessions
+[0m09:35:40.757021 [debug] [Thread-4 (]: Writing injected SQL for node "model.retailrocket.fct_sessions"
+[0m09:35:40.757598 [debug] [Thread-3 (]: Using postgres connection "model.retailrocket.feature_table"
+[0m09:35:40.758098 [debug] [Thread-3 (]: On model.retailrocket.feature_table: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.feature_table"} */
+
+  
+    
+
+  create  table "retailrocket"."gold"."feature_table__dbt_tmp"
+  
+  
+    as
+  
+  (
+    -- item-level features feeding both models: popularity + conversion for the
+-- recommender's cold-start fallback and the abandonment model. co-occurrence
+-- pairs are a different grain, so they live in feature_cooccur, not here.
+with item_counts as (
+    select
+        itemid,
+        count(*) filter (where event = 'view') as views,
+        count(*) filter (where event = 'addtocart') as carts,
+        count(*) filter (where event = 'transaction') as purchases
+    from "retailrocket"."gold"."stg_events"
+    group by itemid
+),
+
+cat_conv as (
+    select
+        categoryid,
+        count(*) filter (where event = 'view') as cat_views,
+        count(*) filter (where event = 'transaction') as cat_purchases
+    from "retailrocket"."gold"."stg_events"
+    where categoryid is not null
+    group by categoryid
+)
+
+select
+    ic.itemid,
+    il.categoryid,
+    ic.views,
+    ic.carts,
+    ic.purchases,
+    ic.views as popularity,
+    case when ic.views > 0 then ic.purchases::float / ic.views else 0 end as item_purchase_rate,
+    case when cc.cat_views > 0 then cc.cat_purchases::float / cc.cat_views else 0 end as category_purchase_rate
+from item_counts ic
+left join "retailrocket"."gold"."stg_item_latest" il on ic.itemid = il.itemid
+left join cat_conv cc on il.categoryid = cc.categoryid
+  );
+  
+[0m09:35:40.758605 [debug] [Thread-3 (]: Opening a new connection, currently in state closed
+[0m09:35:40.759142 [debug] [Thread-1 (]: Began executing node model.retailrocket.feature_cooccur
+[0m09:35:40.763490 [debug] [Thread-1 (]: Writing runtime sql for node "model.retailrocket.feature_cooccur"
+[0m09:35:40.764127 [debug] [Thread-4 (]: Began executing node model.retailrocket.fct_sessions
+[0m09:35:40.767723 [debug] [Thread-4 (]: Writing runtime sql for node "model.retailrocket.fct_sessions"
+[0m09:35:40.768324 [debug] [Thread-3 (]: SQL status: SELECT 3 in 0.010 seconds
+[0m09:35:40.772914 [debug] [Thread-3 (]: Using postgres connection "model.retailrocket.feature_table"
+[0m09:35:40.769035 [debug] [Thread-1 (]: Using postgres connection "model.retailrocket.feature_cooccur"
+[0m09:35:40.774497 [debug] [Thread-1 (]: On model.retailrocket.feature_cooccur: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.feature_cooccur"} */
+
+  
+    
+
+  create  table "retailrocket"."gold"."feature_cooccur__dbt_tmp"
+  
+  
+    as
+  
+  (
+    -- co-view / co-purchase item pairs for the recommender. surrogate pair_id so the
+-- (item_a, item_b, pair_type) grain can be tested unique.
+select
+    item_a || '-' || item_b || '-' || pair_type as pair_id,
+    item_a,
+    item_b,
+    pair_type,
+    weight
+from "retailrocket"."gold"."stg_cooccur"
+  );
+  
+[0m09:35:40.774955 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m09:35:40.773461 [debug] [Thread-3 (]: On model.retailrocket.feature_table: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.feature_table"} */
+alter table "retailrocket"."gold"."feature_table__dbt_tmp" rename to "feature_table"
+[0m09:35:40.774020 [debug] [Thread-4 (]: Using postgres connection "model.retailrocket.fct_sessions"
+[0m09:35:40.775560 [debug] [Thread-4 (]: On model.retailrocket.fct_sessions: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.fct_sessions"} */
+
+  
+    
+
+  create  table "retailrocket"."gold"."fct_sessions__dbt_tmp"
+  
+  
+    as
+  
+  (
+    select
+    session_id,
+    visitorid,
+    start_time,
+    end_time,
+    extract(epoch from (end_time - start_time)) as duration_seconds,
+    event_count,
+    has_purchase
+from "retailrocket"."gold"."stg_sessions"
+  );
+  
+[0m09:35:40.776050 [debug] [Thread-4 (]: Opening a new connection, currently in state closed
+[0m09:35:40.776464 [debug] [Thread-3 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m09:35:40.778130 [debug] [Thread-3 (]: On model.retailrocket.feature_table: COMMIT
+[0m09:35:40.778490 [debug] [Thread-3 (]: Using postgres connection "model.retailrocket.feature_table"
+[0m09:35:40.778862 [debug] [Thread-3 (]: On model.retailrocket.feature_table: COMMIT
+[0m09:35:40.779417 [debug] [Thread-3 (]: SQL status: COMMIT in 0.000 seconds
+[0m09:35:40.781424 [debug] [Thread-3 (]: Applying DROP to: "retailrocket"."gold"."feature_table__dbt_backup"
+[0m09:35:40.782449 [debug] [Thread-3 (]: Using postgres connection "model.retailrocket.feature_table"
+[0m09:35:40.783434 [debug] [Thread-3 (]: On model.retailrocket.feature_table: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.feature_table"} */
+drop table if exists "retailrocket"."gold"."feature_table__dbt_backup" cascade
+[0m09:35:40.782928 [debug] [Thread-1 (]: SQL status: SELECT 2 in 0.008 seconds
+[0m09:35:40.793185 [debug] [Thread-3 (]: SQL status: DROP TABLE in 0.009 seconds
+[0m09:35:40.793982 [debug] [Thread-4 (]: SQL status: SELECT 3 in 0.018 seconds
+[0m09:35:40.795643 [debug] [Thread-1 (]: Using postgres connection "model.retailrocket.feature_cooccur"
+[0m09:35:40.797481 [debug] [Thread-3 (]: On model.retailrocket.feature_table: Close
+[0m09:35:40.800992 [debug] [Thread-4 (]: Using postgres connection "model.retailrocket.fct_sessions"
+[0m09:35:40.802075 [debug] [Thread-4 (]: On model.retailrocket.fct_sessions: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.fct_sessions"} */
+alter table "retailrocket"."gold"."fct_sessions__dbt_tmp" rename to "fct_sessions"
+[0m09:35:40.802705 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '283e1af2-51eb-4967-a8fd-33cc742c468e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fa51b583230>]}
+[0m09:35:40.801501 [debug] [Thread-1 (]: On model.retailrocket.feature_cooccur: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.feature_cooccur"} */
+alter table "retailrocket"."gold"."feature_cooccur__dbt_tmp" rename to "feature_cooccur"
+[0m09:35:40.803918 [debug] [Thread-4 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m09:35:40.805587 [debug] [Thread-4 (]: On model.retailrocket.fct_sessions: COMMIT
+[0m09:35:40.806307 [debug] [Thread-4 (]: Using postgres connection "model.retailrocket.fct_sessions"
+[0m09:35:40.803485 [info ] [Thread-3 (]: 9 of 11 OK created sql table model gold.feature_table .......................... [[32mSELECT 3[0m in 0.07s]
+[0m09:35:40.807158 [debug] [Thread-3 (]: Finished running node model.retailrocket.feature_table
+[0m09:35:40.806642 [debug] [Thread-4 (]: On model.retailrocket.fct_sessions: COMMIT
+[0m09:35:40.805956 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m09:35:40.808719 [debug] [Thread-1 (]: On model.retailrocket.feature_cooccur: COMMIT
+[0m09:35:40.809623 [debug] [Thread-1 (]: Using postgres connection "model.retailrocket.feature_cooccur"
+[0m09:35:40.810007 [debug] [Thread-1 (]: On model.retailrocket.feature_cooccur: COMMIT
+[0m09:35:40.809169 [debug] [Thread-4 (]: SQL status: COMMIT in 0.001 seconds
+[0m09:35:40.812229 [debug] [Thread-4 (]: Applying DROP to: "retailrocket"."gold"."fct_sessions__dbt_backup"
+[0m09:35:40.813408 [debug] [Thread-4 (]: Using postgres connection "model.retailrocket.fct_sessions"
+[0m09:35:40.813756 [debug] [Thread-4 (]: On model.retailrocket.fct_sessions: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.fct_sessions"} */
+drop table if exists "retailrocket"."gold"."fct_sessions__dbt_backup" cascade
+[0m09:35:40.812634 [debug] [Thread-1 (]: SQL status: COMMIT in 0.002 seconds
+[0m09:35:40.816178 [debug] [Thread-1 (]: Applying DROP to: "retailrocket"."gold"."feature_cooccur__dbt_backup"
+[0m09:35:40.817574 [debug] [Thread-1 (]: Using postgres connection "model.retailrocket.feature_cooccur"
+[0m09:35:40.817928 [debug] [Thread-1 (]: On model.retailrocket.feature_cooccur: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "model.retailrocket.feature_cooccur"} */
+drop table if exists "retailrocket"."gold"."feature_cooccur__dbt_backup" cascade
+[0m09:35:40.816665 [debug] [Thread-4 (]: SQL status: DROP TABLE in 0.003 seconds
+[0m09:35:40.819665 [debug] [Thread-4 (]: On model.retailrocket.fct_sessions: Close
+[0m09:35:40.820117 [debug] [Thread-1 (]: SQL status: DROP TABLE in 0.002 seconds
+[0m09:35:40.821705 [debug] [Thread-1 (]: On model.retailrocket.feature_cooccur: Close
+[0m09:35:40.822297 [debug] [Thread-4 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '283e1af2-51eb-4967-a8fd-33cc742c468e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fa51b583890>]}
+[0m09:35:40.822893 [info ] [Thread-4 (]: 11 of 11 OK created sql table model gold.fct_sessions .......................... [[32mSELECT 3[0m in 0.07s]
+[0m09:35:40.824194 [debug] [Thread-4 (]: Finished running node model.retailrocket.fct_sessions
+[0m09:35:40.823583 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '283e1af2-51eb-4967-a8fd-33cc742c468e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fa51b5821b0>]}
+[0m09:35:40.825078 [info ] [Thread-1 (]: 10 of 11 OK created sql table model gold.feature_cooccur ....................... [[32mSELECT 2[0m in 0.08s]
+[0m09:35:40.825592 [debug] [Thread-1 (]: Finished running node model.retailrocket.feature_cooccur
+[0m09:35:40.827483 [debug] [MainThread]: On master: COMMIT
+[0m09:35:40.827885 [debug] [MainThread]: Using postgres connection "master"
+[0m09:35:40.828224 [debug] [MainThread]: On master: COMMIT
+[0m09:35:40.828506 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m09:35:40.833114 [debug] [MainThread]: SQL status: COMMIT in 0.005 seconds
+[0m09:35:40.833820 [debug] [MainThread]: On master: Close
+[0m09:35:40.834376 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m09:35:40.834678 [debug] [MainThread]: Connection 'model.retailrocket.feature_cooccur' was properly closed.
+[0m09:35:40.834935 [debug] [MainThread]: Connection 'model.retailrocket.dim_items' was properly closed.
+[0m09:35:40.835246 [debug] [MainThread]: Connection 'model.retailrocket.fct_sessions' was properly closed.
+[0m09:35:40.835531 [debug] [MainThread]: Connection 'model.retailrocket.feature_table' was properly closed.
+[0m09:35:40.836044 [info ] [MainThread]: 
+[0m09:35:40.836467 [info ] [MainThread]: Finished running 6 table models, 5 view models in 0 hours 0 minutes and 0.59 seconds (0.59s).
+[0m09:35:40.838211 [debug] [MainThread]: Command end result
+[0m09:35:40.869108 [debug] [MainThread]: Wrote artifact WritableManifest to /home/tondaiquoc/Workspace/Project/RetailRocket_EC_Intelligence_Platform/dbt/retailrocket/target/manifest.json
+[0m09:35:40.872605 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/tondaiquoc/Workspace/Project/RetailRocket_EC_Intelligence_Platform/dbt/retailrocket/target/semantic_manifest.json
+[0m09:35:40.875065 [debug] [MainThread]: Wrote artifact OsiDocument to /home/tondaiquoc/Workspace/Project/RetailRocket_EC_Intelligence_Platform/dbt/retailrocket/target/osi_document.json
+[0m09:35:40.881580 [debug] [MainThread]: Wrote artifact RunExecutionResult to /home/tondaiquoc/Workspace/Project/RetailRocket_EC_Intelligence_Platform/dbt/retailrocket/target/run_results.json
+[0m09:35:40.882067 [info ] [MainThread]: 
+[0m09:35:40.882443 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m09:35:40.882743 [info ] [MainThread]: 
+[0m09:35:40.883076 [info ] [MainThread]: Done. PASS=11 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=11
+[0m09:35:40.883550 [warn ] [MainThread]: [[33mWARNING[0m][DeprecationsSummary]: Deprecated functionality
+Summary of encountered deprecations:
+- MissingArgumentsPropertyInGenericTestDeprecation: 2 occurrences
+To see all deprecation instances instead of just the first occurrence of each,
+run command again with the `--show-all-deprecations` flag. You may also need to
+run with `--no-partial-parse` as some deprecations are only encountered during
+parsing.
+[0m09:35:40.885003 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 2.708457, "process_in_blocks": "67472", "process_kernel_time": 0.333044, "process_mem_max_rss": "157880", "process_out_blocks": "3768", "process_user_time": 3.595066}
+[0m09:35:40.885501 [debug] [MainThread]: Command `dbt run` succeeded at 09:35:40.885411 after 2.71 seconds
+[0m09:35:40.885899 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fa52caba510>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fa51849a750>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fa51849a270>]}
+[0m09:35:40.886291 [debug] [MainThread]: Flushing usage events
+[0m09:35:43.356898 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m09:36:15.717651 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f661e3142f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f66203dcf50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f661ccd79d0>]}
+
+
+============================== 09:36:15.720967 | e78e1d39-48a1-4aa7-a367-42391fb5c31d ==============================
+[0m09:36:15.720967 [info ] [MainThread]: Running with dbt=1.12.0-rc1
+[0m09:36:15.721468 [debug] [MainThread]: running dbt with arguments {'empty': 'None', 'quiet': 'False', 'debug': 'False', 'partial_parse': 'True', 'warn_error': 'None', 'invocation_command': 'dbt test --project-dir /home/tondaiquoc/Workspace/Project/RetailRocket_EC_Intelligence_Platform/dbt/retailrocket --profiles-dir /home/tondaiquoc/Workspace/Project/RetailRocket_EC_Intelligence_Platform/dbt/retailrocket', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'use_colors': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'static_parser': 'True', 'maximum_seed_size_mib': '1', 'no_print': 'None', 'cache_selected_only': 'False', 'target_path': 'None', 'printer_width': '80', 'fail_fast': 'False', 'send_anonymous_usage_stats': 'True', 'version_check': 'True', 'log_format': 'default', 'write_json': 'True', 'introspect': 'True', 'log_path': '/home/tondaiquoc/Workspace/Project/RetailRocket_EC_Intelligence_Platform/dbt/retailrocket/logs', 'log_cache_events': 'False', 'profiles_dir': '/home/tondaiquoc/Workspace/Project/RetailRocket_EC_Intelligence_Platform/dbt/retailrocket'}
+[0m09:36:15.861850 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'e78e1d39-48a1-4aa7-a367-42391fb5c31d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f661cf17230>]}
+[0m09:36:15.919924 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'e78e1d39-48a1-4aa7-a367-42391fb5c31d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f661db15040>]}
+[0m09:36:15.921076 [info ] [MainThread]: Registered adapter: postgres=1.10.2
+[0m09:36:15.996849 [debug] [MainThread]: checksum: ac099baf1f828147a5c49faed74b84d8a6fceb0f09d8be8ad0f9eb5efe3bbe59, vars: {}, profile: retailrocket, target: dev, version: 1.12.0rc1
+[0m09:36:16.106672 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m09:36:16.107177 [debug] [MainThread]: Nothing changed, skipping partial parsing.
+[0m09:36:16.107455 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m09:36:16.147793 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'e78e1d39-48a1-4aa7-a367-42391fb5c31d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f661b70c350>]}
+[0m09:36:16.231602 [debug] [MainThread]: Wrote artifact WritableManifest to /home/tondaiquoc/Workspace/Project/RetailRocket_EC_Intelligence_Platform/dbt/retailrocket/target/manifest.json
+[0m09:36:16.235315 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/tondaiquoc/Workspace/Project/RetailRocket_EC_Intelligence_Platform/dbt/retailrocket/target/semantic_manifest.json
+[0m09:36:16.246288 [debug] [MainThread]: Wrote artifact OsiDocument to /home/tondaiquoc/Workspace/Project/RetailRocket_EC_Intelligence_Platform/dbt/retailrocket/target/osi_document.json
+[0m09:36:16.269003 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'e78e1d39-48a1-4aa7-a367-42391fb5c31d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f661afcad50>]}
+[0m09:36:16.269606 [info ] [MainThread]: Found 11 models, 17 data tests, 5 sources, 475 macros
+[0m09:36:16.269930 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'e78e1d39-48a1-4aa7-a367-42391fb5c31d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f661abe4210>]}
+[0m09:36:16.272763 [info ] [MainThread]: 
+[0m09:36:16.273248 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m09:36:16.273593 [info ] [MainThread]: 
+[0m09:36:16.274149 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m09:36:16.278497 [debug] [ThreadPool]: Acquiring new postgres connection 'list_retailrocket_gold'
+[0m09:36:16.310321 [debug] [ThreadPool]: Using postgres connection "list_retailrocket_gold"
+[0m09:36:16.310751 [debug] [ThreadPool]: On list_retailrocket_gold: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "connection_name": "list_retailrocket_gold"} */
+select
+      'retailrocket' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'gold'
+    union all
+    select
+      'retailrocket' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'gold'
+    union all
+    select
+      'retailrocket' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'gold'
+  
+[0m09:36:16.311152 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m09:36:16.322483 [debug] [ThreadPool]: SQL status: SELECT 11 in 0.011 seconds
+[0m09:36:16.324166 [debug] [ThreadPool]: On list_retailrocket_gold: ROLLBACK
+[0m09:36:16.324737 [debug] [ThreadPool]: On list_retailrocket_gold: Close
+[0m09:36:16.330551 [debug] [MainThread]: Using postgres connection "master"
+[0m09:36:16.331038 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "connection_name": "master"} */
+select distinct
+        dependent_namespace.nspname as dependent_schema,
+        dependent_class.relname as dependent_name,
+        referenced_namespace.nspname as referenced_schema,
+        referenced_class.relname as referenced_name
+
+    -- Query for views: views are entries in pg_class with an entry in pg_rewrite, but we avoid
+    -- a seq scan on pg_rewrite by leveraging the fact there is an "internal" row in pg_depend for
+    -- the view...
+    from pg_class as dependent_class
+    join pg_namespace as dependent_namespace on dependent_namespace.oid = dependent_class.relnamespace
+    join pg_depend as dependent_depend on dependent_depend.refobjid = dependent_class.oid
+        and dependent_depend.classid = 'pg_rewrite'::regclass
+        and dependent_depend.refclassid = 'pg_class'::regclass
+        and dependent_depend.deptype = 'i'
+
+    -- ... and via pg_depend (that has a row per column, hence the need for "distinct" above, and
+    -- making sure to exclude the internal row to avoid a view appearing to depend on itself)...
+    join pg_depend as joining_depend on joining_depend.objid = dependent_depend.objid
+        and joining_depend.classid = 'pg_rewrite'::regclass
+        and joining_depend.refclassid = 'pg_class'::regclass
+        and joining_depend.refobjid != dependent_depend.refobjid
+
+    -- ... we can find the tables they query from in pg_class, but excluding system tables. Note we
+    -- don't need need to exclude _dependent_ system tables, because they only query from other
+    -- system tables, and so are automatically excluded by excluding _referenced_ system tables
+    join pg_class as referenced_class on referenced_class.oid = joining_depend.refobjid
+    join pg_namespace as referenced_namespace on referenced_namespace.oid = referenced_class.relnamespace
+        and referenced_namespace.nspname != 'information_schema'
+        and referenced_namespace.nspname not like 'pg\_%'
+
+    order by
+        dependent_schema, dependent_name, referenced_schema, referenced_name;
+[0m09:36:16.331424 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m09:36:16.339675 [debug] [MainThread]: SQL status: SELECT 5 in 0.008 seconds
+[0m09:36:16.341479 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'e78e1d39-48a1-4aa7-a367-42391fb5c31d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f66196586d0>]}
+[0m09:36:16.342057 [debug] [MainThread]: On master: ROLLBACK
+[0m09:36:16.342506 [debug] [MainThread]: On master: COMMIT
+[0m09:36:16.342807 [debug] [MainThread]: Using postgres connection "master"
+[0m09:36:16.343152 [debug] [MainThread]: On master: COMMIT
+[0m09:36:16.343603 [debug] [MainThread]: SQL status: COMMIT in 0.000 seconds
+[0m09:36:16.343954 [debug] [MainThread]: On master: Close
+[0m09:36:16.347341 [debug] [Thread-3 (]: Began running node test.retailrocket.not_null_fct_funnel_categoryid.09d7dec99b
+[0m09:36:16.349420 [info ] [Thread-3 (]: 3 of 17 START test not_null_fct_funnel_categoryid .............................. [RUN]
+[0m09:36:16.350035 [debug] [Thread-3 (]: Acquiring new postgres connection 'test.retailrocket.not_null_fct_funnel_categoryid.09d7dec99b'
+[0m09:36:16.349025 [debug] [Thread-2 (]: Began running node test.retailrocket.not_null_dim_items_itemid.1833a60c29
+[0m09:36:16.348044 [debug] [Thread-4 (]: Began running node test.retailrocket.not_null_fct_funnel_event_date.a3ac819cca
+[0m09:36:16.348540 [debug] [Thread-1 (]: Began running node test.retailrocket.not_null_dim_categories_categoryid.a69f9c41ff
+[0m09:36:16.351601 [info ] [Thread-1 (]: 1 of 17 START test not_null_dim_categories_categoryid .......................... [RUN]
+[0m09:36:16.352141 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_retailrocket_gold, now test.retailrocket.not_null_dim_categories_categoryid.a69f9c41ff)
+[0m09:36:16.352505 [debug] [Thread-1 (]: Began compiling node test.retailrocket.not_null_dim_categories_categoryid.a69f9c41ff
+[0m09:36:16.350381 [debug] [Thread-3 (]: Began compiling node test.retailrocket.not_null_fct_funnel_categoryid.09d7dec99b
+[0m09:36:16.350743 [info ] [Thread-2 (]: 2 of 17 START test not_null_dim_items_itemid ................................... [RUN]
+[0m09:36:16.351161 [info ] [Thread-4 (]: 4 of 17 START test not_null_fct_funnel_event_date .............................. [RUN]
+[0m09:36:16.375891 [debug] [Thread-1 (]: Writing injected SQL for node "test.retailrocket.not_null_dim_categories_categoryid.a69f9c41ff"
+[0m09:36:16.378978 [debug] [Thread-3 (]: Writing injected SQL for node "test.retailrocket.not_null_fct_funnel_categoryid.09d7dec99b"
+[0m09:36:16.379895 [debug] [Thread-2 (]: Acquiring new postgres connection 'test.retailrocket.not_null_dim_items_itemid.1833a60c29'
+[0m09:36:16.381308 [debug] [Thread-2 (]: Began compiling node test.retailrocket.not_null_dim_items_itemid.1833a60c29
+[0m09:36:16.385730 [debug] [Thread-2 (]: Writing injected SQL for node "test.retailrocket.not_null_dim_items_itemid.1833a60c29"
+[0m09:36:16.380531 [debug] [Thread-4 (]: Acquiring new postgres connection 'test.retailrocket.not_null_fct_funnel_event_date.a3ac819cca'
+[0m09:36:16.388054 [debug] [Thread-4 (]: Began compiling node test.retailrocket.not_null_fct_funnel_event_date.a3ac819cca
+[0m09:36:16.387140 [debug] [Thread-1 (]: Began executing node test.retailrocket.not_null_dim_categories_categoryid.a69f9c41ff
+[0m09:36:16.387658 [debug] [Thread-2 (]: Began executing node test.retailrocket.not_null_dim_items_itemid.1833a60c29
+[0m09:36:16.386458 [debug] [Thread-3 (]: Began executing node test.retailrocket.not_null_fct_funnel_categoryid.09d7dec99b
+[0m09:36:16.392558 [debug] [Thread-4 (]: Writing injected SQL for node "test.retailrocket.not_null_fct_funnel_event_date.a3ac819cca"
+[0m09:36:16.424045 [debug] [Thread-2 (]: Writing runtime sql for node "test.retailrocket.not_null_dim_items_itemid.1833a60c29"
+[0m09:36:16.425413 [debug] [Thread-1 (]: Writing runtime sql for node "test.retailrocket.not_null_dim_categories_categoryid.a69f9c41ff"
+[0m09:36:16.430001 [debug] [Thread-4 (]: Began executing node test.retailrocket.not_null_fct_funnel_event_date.a3ac819cca
+[0m09:36:16.428917 [debug] [Thread-3 (]: Writing runtime sql for node "test.retailrocket.not_null_fct_funnel_categoryid.09d7dec99b"
+[0m09:36:16.433276 [debug] [Thread-2 (]: Using postgres connection "test.retailrocket.not_null_dim_items_itemid.1833a60c29"
+[0m09:36:16.432641 [debug] [Thread-4 (]: Writing runtime sql for node "test.retailrocket.not_null_fct_funnel_event_date.a3ac819cca"
+[0m09:36:16.433843 [debug] [Thread-1 (]: Using postgres connection "test.retailrocket.not_null_dim_categories_categoryid.a69f9c41ff"
+[0m09:36:16.435258 [debug] [Thread-1 (]: On test.retailrocket.not_null_dim_categories_categoryid.a69f9c41ff: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "test.retailrocket.not_null_dim_categories_categoryid.a69f9c41ff"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select categoryid
+from "retailrocket"."gold"."dim_categories"
+where categoryid is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m09:36:16.435662 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m09:36:16.434312 [debug] [Thread-2 (]: On test.retailrocket.not_null_dim_items_itemid.1833a60c29: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "test.retailrocket.not_null_dim_items_itemid.1833a60c29"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select itemid
+from "retailrocket"."gold"."dim_items"
+where itemid is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m09:36:16.434905 [debug] [Thread-3 (]: Using postgres connection "test.retailrocket.not_null_fct_funnel_categoryid.09d7dec99b"
+[0m09:36:16.437194 [debug] [Thread-3 (]: On test.retailrocket.not_null_fct_funnel_categoryid.09d7dec99b: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "test.retailrocket.not_null_fct_funnel_categoryid.09d7dec99b"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select categoryid
+from "retailrocket"."gold"."fct_funnel"
+where categoryid is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m09:36:16.437709 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m09:36:16.436273 [debug] [Thread-4 (]: Using postgres connection "test.retailrocket.not_null_fct_funnel_event_date.a3ac819cca"
+[0m09:36:16.436703 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m09:36:16.438262 [debug] [Thread-4 (]: On test.retailrocket.not_null_fct_funnel_event_date.a3ac819cca: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "test.retailrocket.not_null_fct_funnel_event_date.a3ac819cca"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select event_date
+from "retailrocket"."gold"."fct_funnel"
+where event_date is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m09:36:16.438821 [debug] [Thread-4 (]: Opening a new connection, currently in state init
+[0m09:36:16.441658 [debug] [Thread-1 (]: SQL status: SELECT 1 in 0.006 seconds
+[0m09:36:16.446342 [debug] [Thread-1 (]: On test.retailrocket.not_null_dim_categories_categoryid.a69f9c41ff: ROLLBACK
+[0m09:36:16.447486 [debug] [Thread-2 (]: SQL status: SELECT 1 in 0.011 seconds
+[0m09:36:16.449708 [debug] [Thread-2 (]: On test.retailrocket.not_null_dim_items_itemid.1833a60c29: ROLLBACK
+[0m09:36:16.446955 [debug] [Thread-3 (]: SQL status: SELECT 1 in 0.009 seconds
+[0m09:36:16.448441 [debug] [Thread-4 (]: SQL status: SELECT 1 in 0.010 seconds
+[0m09:36:16.448068 [debug] [Thread-1 (]: On test.retailrocket.not_null_dim_categories_categoryid.a69f9c41ff: Close
+[0m09:36:16.451019 [debug] [Thread-3 (]: On test.retailrocket.not_null_fct_funnel_categoryid.09d7dec99b: ROLLBACK
+[0m09:36:16.451462 [debug] [Thread-2 (]: On test.retailrocket.not_null_dim_items_itemid.1833a60c29: Close
+[0m09:36:16.452475 [debug] [Thread-4 (]: On test.retailrocket.not_null_fct_funnel_event_date.a3ac819cca: ROLLBACK
+[0m09:36:16.453306 [info ] [Thread-1 (]: 1 of 17 PASS not_null_dim_categories_categoryid ................................ [[32mPASS[0m in 0.10s]
+[0m09:36:16.453697 [debug] [Thread-3 (]: On test.retailrocket.not_null_fct_funnel_categoryid.09d7dec99b: Close
+[0m09:36:16.455574 [info ] [Thread-2 (]: 2 of 17 PASS not_null_dim_items_itemid ......................................... [[32mPASS[0m in 0.08s]
+[0m09:36:16.457352 [debug] [Thread-2 (]: Finished running node test.retailrocket.not_null_dim_items_itemid.1833a60c29
+[0m09:36:16.456647 [debug] [Thread-1 (]: Finished running node test.retailrocket.not_null_dim_categories_categoryid.a69f9c41ff
+[0m09:36:16.458775 [debug] [Thread-1 (]: Began running node test.retailrocket.not_null_fct_sessions_visitorid.dec2db2069
+[0m09:36:16.459210 [info ] [Thread-1 (]: 6 of 17 START test not_null_fct_sessions_visitorid ............................. [RUN]
+[0m09:36:16.456031 [debug] [Thread-4 (]: On test.retailrocket.not_null_fct_funnel_event_date.a3ac819cca: Close
+[0m09:36:16.457867 [info ] [Thread-3 (]: 3 of 17 PASS not_null_fct_funnel_categoryid .................................... [[32mPASS[0m in 0.11s]
+[0m09:36:16.458307 [debug] [Thread-2 (]: Began running node test.retailrocket.not_null_fct_sessions_session_id.c09c12e72d
+[0m09:36:16.459658 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.retailrocket.not_null_dim_categories_categoryid.a69f9c41ff, now test.retailrocket.not_null_fct_sessions_visitorid.dec2db2069)
+[0m09:36:16.460401 [debug] [Thread-3 (]: Finished running node test.retailrocket.not_null_fct_funnel_categoryid.09d7dec99b
+[0m09:36:16.461027 [info ] [Thread-4 (]: 4 of 17 PASS not_null_fct_funnel_event_date .................................... [[32mPASS[0m in 0.08s]
+[0m09:36:16.463143 [debug] [Thread-4 (]: Finished running node test.retailrocket.not_null_fct_funnel_event_date.a3ac819cca
+[0m09:36:16.462064 [debug] [Thread-1 (]: Began compiling node test.retailrocket.not_null_fct_sessions_visitorid.dec2db2069
+[0m09:36:16.462535 [debug] [Thread-3 (]: Began running node test.retailrocket.not_null_feature_cooccur_item_a.381099dcc6
+[0m09:36:16.461569 [info ] [Thread-2 (]: 5 of 17 START test not_null_fct_sessions_session_id ............................ [RUN]
+[0m09:36:16.463598 [debug] [Thread-4 (]: Began running node test.retailrocket.not_null_feature_cooccur_item_b.03914e97b4
+[0m09:36:16.468455 [debug] [Thread-1 (]: Writing injected SQL for node "test.retailrocket.not_null_fct_sessions_visitorid.dec2db2069"
+[0m09:36:16.468882 [info ] [Thread-3 (]: 7 of 17 START test not_null_feature_cooccur_item_a ............................. [RUN]
+[0m09:36:16.470574 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly test.retailrocket.not_null_fct_funnel_categoryid.09d7dec99b, now test.retailrocket.not_null_feature_cooccur_item_a.381099dcc6)
+[0m09:36:16.470981 [debug] [Thread-3 (]: Began compiling node test.retailrocket.not_null_feature_cooccur_item_a.381099dcc6
+[0m09:36:16.469458 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.retailrocket.not_null_dim_items_itemid.1833a60c29, now test.retailrocket.not_null_fct_sessions_session_id.c09c12e72d)
+[0m09:36:16.475900 [debug] [Thread-2 (]: Began compiling node test.retailrocket.not_null_fct_sessions_session_id.c09c12e72d
+[0m09:36:16.469989 [info ] [Thread-4 (]: 8 of 17 START test not_null_feature_cooccur_item_b ............................. [RUN]
+[0m09:36:16.475469 [debug] [Thread-1 (]: Began executing node test.retailrocket.not_null_fct_sessions_visitorid.dec2db2069
+[0m09:36:16.474854 [debug] [Thread-3 (]: Writing injected SQL for node "test.retailrocket.not_null_feature_cooccur_item_a.381099dcc6"
+[0m09:36:16.479714 [debug] [Thread-2 (]: Writing injected SQL for node "test.retailrocket.not_null_fct_sessions_session_id.c09c12e72d"
+[0m09:36:16.480201 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly test.retailrocket.not_null_fct_funnel_event_date.a3ac819cca, now test.retailrocket.not_null_feature_cooccur_item_b.03914e97b4)
+[0m09:36:16.484060 [debug] [Thread-4 (]: Began compiling node test.retailrocket.not_null_feature_cooccur_item_b.03914e97b4
+[0m09:36:16.483311 [debug] [Thread-1 (]: Writing runtime sql for node "test.retailrocket.not_null_fct_sessions_visitorid.dec2db2069"
+[0m09:36:16.484653 [debug] [Thread-3 (]: Began executing node test.retailrocket.not_null_feature_cooccur_item_a.381099dcc6
+[0m09:36:16.490792 [debug] [Thread-3 (]: Writing runtime sql for node "test.retailrocket.not_null_feature_cooccur_item_a.381099dcc6"
+[0m09:36:16.488499 [debug] [Thread-2 (]: Began executing node test.retailrocket.not_null_fct_sessions_session_id.c09c12e72d
+[0m09:36:16.488097 [debug] [Thread-4 (]: Writing injected SQL for node "test.retailrocket.not_null_feature_cooccur_item_b.03914e97b4"
+[0m09:36:16.491471 [debug] [Thread-1 (]: Using postgres connection "test.retailrocket.not_null_fct_sessions_visitorid.dec2db2069"
+[0m09:36:16.495034 [debug] [Thread-1 (]: On test.retailrocket.not_null_fct_sessions_visitorid.dec2db2069: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "test.retailrocket.not_null_fct_sessions_visitorid.dec2db2069"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select visitorid
+from "retailrocket"."gold"."fct_sessions"
+where visitorid is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m09:36:16.495414 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m09:36:16.494100 [debug] [Thread-2 (]: Writing runtime sql for node "test.retailrocket.not_null_fct_sessions_session_id.c09c12e72d"
+[0m09:36:16.494662 [debug] [Thread-3 (]: Using postgres connection "test.retailrocket.not_null_feature_cooccur_item_a.381099dcc6"
+[0m09:36:16.496733 [debug] [Thread-3 (]: On test.retailrocket.not_null_feature_cooccur_item_a.381099dcc6: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "test.retailrocket.not_null_feature_cooccur_item_a.381099dcc6"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select item_a
+from "retailrocket"."gold"."feature_cooccur"
+where item_a is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m09:36:16.497249 [debug] [Thread-3 (]: Opening a new connection, currently in state closed
+[0m09:36:16.496053 [debug] [Thread-4 (]: Began executing node test.retailrocket.not_null_feature_cooccur_item_b.03914e97b4
+[0m09:36:16.500192 [debug] [Thread-4 (]: Writing runtime sql for node "test.retailrocket.not_null_feature_cooccur_item_b.03914e97b4"
+[0m09:36:16.497827 [debug] [Thread-2 (]: Using postgres connection "test.retailrocket.not_null_fct_sessions_session_id.c09c12e72d"
+[0m09:36:16.500915 [debug] [Thread-2 (]: On test.retailrocket.not_null_fct_sessions_session_id.c09c12e72d: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "test.retailrocket.not_null_fct_sessions_session_id.c09c12e72d"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select session_id
+from "retailrocket"."gold"."fct_sessions"
+where session_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m09:36:16.501531 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m09:36:16.501985 [debug] [Thread-3 (]: SQL status: SELECT 1 in 0.005 seconds
+[0m09:36:16.504274 [debug] [Thread-3 (]: On test.retailrocket.not_null_feature_cooccur_item_a.381099dcc6: ROLLBACK
+[0m09:36:16.502756 [debug] [Thread-1 (]: SQL status: SELECT 1 in 0.007 seconds
+[0m09:36:16.502404 [debug] [Thread-4 (]: Using postgres connection "test.retailrocket.not_null_feature_cooccur_item_b.03914e97b4"
+[0m09:36:16.506281 [debug] [Thread-4 (]: On test.retailrocket.not_null_feature_cooccur_item_b.03914e97b4: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "test.retailrocket.not_null_feature_cooccur_item_b.03914e97b4"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select item_b
+from "retailrocket"."gold"."feature_cooccur"
+where item_b is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m09:36:16.506641 [debug] [Thread-4 (]: Opening a new connection, currently in state closed
+[0m09:36:16.505320 [debug] [Thread-1 (]: On test.retailrocket.not_null_fct_sessions_visitorid.dec2db2069: ROLLBACK
+[0m09:36:16.505800 [debug] [Thread-3 (]: On test.retailrocket.not_null_feature_cooccur_item_a.381099dcc6: Close
+[0m09:36:16.507814 [debug] [Thread-1 (]: On test.retailrocket.not_null_fct_sessions_visitorid.dec2db2069: Close
+[0m09:36:16.507503 [info ] [Thread-3 (]: 7 of 17 PASS not_null_feature_cooccur_item_a ................................... [[32mPASS[0m in 0.04s]
+[0m09:36:16.508602 [debug] [Thread-3 (]: Finished running node test.retailrocket.not_null_feature_cooccur_item_a.381099dcc6
+[0m09:36:16.509589 [debug] [Thread-3 (]: Began running node test.retailrocket.not_null_feature_cooccur_pair_id.2f6bcfecd7
+[0m09:36:16.509959 [info ] [Thread-3 (]: 9 of 17 START test not_null_feature_cooccur_pair_id ............................ [RUN]
+[0m09:36:16.510410 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly test.retailrocket.not_null_feature_cooccur_item_a.381099dcc6, now test.retailrocket.not_null_feature_cooccur_pair_id.2f6bcfecd7)
+[0m09:36:16.511297 [debug] [Thread-3 (]: Began compiling node test.retailrocket.not_null_feature_cooccur_pair_id.2f6bcfecd7
+[0m09:36:16.509092 [debug] [Thread-2 (]: SQL status: SELECT 1 in 0.008 seconds
+[0m09:36:16.510857 [info ] [Thread-1 (]: 6 of 17 PASS not_null_fct_sessions_visitorid ................................... [[32mPASS[0m in 0.05s]
+[0m09:36:16.520018 [debug] [Thread-3 (]: Writing injected SQL for node "test.retailrocket.not_null_feature_cooccur_pair_id.2f6bcfecd7"
+[0m09:36:16.520567 [debug] [Thread-4 (]: SQL status: SELECT 1 in 0.014 seconds
+[0m09:36:16.524439 [debug] [Thread-4 (]: On test.retailrocket.not_null_feature_cooccur_item_b.03914e97b4: ROLLBACK
+[0m09:36:16.522921 [debug] [Thread-1 (]: Finished running node test.retailrocket.not_null_fct_sessions_visitorid.dec2db2069
+[0m09:36:16.522386 [debug] [Thread-2 (]: On test.retailrocket.not_null_fct_sessions_session_id.c09c12e72d: ROLLBACK
+[0m09:36:16.524922 [debug] [Thread-3 (]: Began executing node test.retailrocket.not_null_feature_cooccur_pair_id.2f6bcfecd7
+[0m09:36:16.528458 [debug] [Thread-3 (]: Writing runtime sql for node "test.retailrocket.not_null_feature_cooccur_pair_id.2f6bcfecd7"
+[0m09:36:16.525894 [debug] [Thread-1 (]: Began running node test.retailrocket.not_null_feature_table_itemid.fa4003abab
+[0m09:36:16.528867 [debug] [Thread-2 (]: On test.retailrocket.not_null_fct_sessions_session_id.c09c12e72d: Close
+[0m09:36:16.525350 [debug] [Thread-4 (]: On test.retailrocket.not_null_feature_cooccur_item_b.03914e97b4: Close
+[0m09:36:16.529376 [info ] [Thread-1 (]: 10 of 17 START test not_null_feature_table_itemid .............................. [RUN]
+[0m09:36:16.531224 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.retailrocket.not_null_fct_sessions_visitorid.dec2db2069, now test.retailrocket.not_null_feature_table_itemid.fa4003abab)
+[0m09:36:16.532450 [debug] [Thread-1 (]: Began compiling node test.retailrocket.not_null_feature_table_itemid.fa4003abab
+[0m09:36:16.530032 [debug] [Thread-3 (]: Using postgres connection "test.retailrocket.not_null_feature_cooccur_pair_id.2f6bcfecd7"
+[0m09:36:16.532025 [info ] [Thread-4 (]: 8 of 17 PASS not_null_feature_cooccur_item_b ................................... [[32mPASS[0m in 0.05s]
+[0m09:36:16.530733 [info ] [Thread-2 (]: 5 of 17 PASS not_null_fct_sessions_session_id .................................. [[32mPASS[0m in 0.06s]
+[0m09:36:16.537137 [debug] [Thread-1 (]: Writing injected SQL for node "test.retailrocket.not_null_feature_table_itemid.fa4003abab"
+[0m09:36:16.537879 [debug] [Thread-3 (]: On test.retailrocket.not_null_feature_cooccur_pair_id.2f6bcfecd7: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "test.retailrocket.not_null_feature_cooccur_pair_id.2f6bcfecd7"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select pair_id
+from "retailrocket"."gold"."feature_cooccur"
+where pair_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m09:36:16.539658 [debug] [Thread-3 (]: Opening a new connection, currently in state closed
+[0m09:36:16.539172 [debug] [Thread-2 (]: Finished running node test.retailrocket.not_null_fct_sessions_session_id.c09c12e72d
+[0m09:36:16.538643 [debug] [Thread-4 (]: Finished running node test.retailrocket.not_null_feature_cooccur_item_b.03914e97b4
+[0m09:36:16.541157 [debug] [Thread-4 (]: Began running node test.retailrocket.relationships_fct_funnel_categoryid__categoryid__ref_dim_categories_.3200328300
+[0m09:36:16.540634 [debug] [Thread-1 (]: Began executing node test.retailrocket.not_null_feature_table_itemid.fa4003abab
+[0m09:36:16.540254 [debug] [Thread-2 (]: Began running node test.retailrocket.relationships_dim_items_categoryid__categoryid__ref_dim_categories_.6c6b741753
+[0m09:36:16.541652 [info ] [Thread-4 (]: 12 of 17 START test relationships_fct_funnel_categoryid__categoryid__ref_dim_categories_  [RUN]
+[0m09:36:16.545875 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly test.retailrocket.not_null_feature_cooccur_item_b.03914e97b4, now test.retailrocket.relationships_fct_funnel_categoryid__categoryid__ref_dim_categories_.3200328300)
+[0m09:36:16.546501 [debug] [Thread-4 (]: Began compiling node test.retailrocket.relationships_fct_funnel_categoryid__categoryid__ref_dim_categories_.3200328300
+[0m09:36:16.544814 [debug] [Thread-1 (]: Writing runtime sql for node "test.retailrocket.not_null_feature_table_itemid.fa4003abab"
+[0m09:36:16.545357 [info ] [Thread-2 (]: 11 of 17 START test relationships_dim_items_categoryid__categoryid__ref_dim_categories_  [RUN]
+[0m09:36:16.546967 [debug] [Thread-3 (]: SQL status: SELECT 1 in 0.007 seconds
+[0m09:36:16.557252 [debug] [Thread-3 (]: On test.retailrocket.not_null_feature_cooccur_pair_id.2f6bcfecd7: ROLLBACK
+[0m09:36:16.555697 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.retailrocket.not_null_fct_sessions_session_id.c09c12e72d, now test.retailrocket.relationships_dim_items_categoryid__categoryid__ref_dim_categories_.6c6b741753)
+[0m09:36:16.554774 [debug] [Thread-4 (]: Writing injected SQL for node "test.retailrocket.relationships_fct_funnel_categoryid__categoryid__ref_dim_categories_.3200328300"
+[0m09:36:16.557691 [debug] [Thread-1 (]: Using postgres connection "test.retailrocket.not_null_feature_table_itemid.fa4003abab"
+[0m09:36:16.558914 [debug] [Thread-1 (]: On test.retailrocket.not_null_feature_table_itemid.fa4003abab: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "test.retailrocket.not_null_feature_table_itemid.fa4003abab"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select itemid
+from "retailrocket"."gold"."feature_table"
+where itemid is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m09:36:16.559273 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m09:36:16.558061 [debug] [Thread-3 (]: On test.retailrocket.not_null_feature_cooccur_pair_id.2f6bcfecd7: Close
+[0m09:36:16.558428 [debug] [Thread-2 (]: Began compiling node test.retailrocket.relationships_dim_items_categoryid__categoryid__ref_dim_categories_.6c6b741753
+[0m09:36:16.559869 [debug] [Thread-4 (]: Began executing node test.retailrocket.relationships_fct_funnel_categoryid__categoryid__ref_dim_categories_.3200328300
+[0m09:36:16.560621 [info ] [Thread-3 (]: 9 of 17 PASS not_null_feature_cooccur_pair_id .................................. [[32mPASS[0m in 0.05s]
+[0m09:36:16.566451 [debug] [Thread-2 (]: Writing injected SQL for node "test.retailrocket.relationships_dim_items_categoryid__categoryid__ref_dim_categories_.6c6b741753"
+[0m09:36:16.568993 [debug] [Thread-4 (]: Writing runtime sql for node "test.retailrocket.relationships_fct_funnel_categoryid__categoryid__ref_dim_categories_.3200328300"
+[0m09:36:16.569621 [debug] [Thread-1 (]: SQL status: SELECT 1 in 0.010 seconds
+[0m09:36:16.571888 [debug] [Thread-1 (]: On test.retailrocket.not_null_feature_table_itemid.fa4003abab: ROLLBACK
+[0m09:36:16.570273 [debug] [Thread-3 (]: Finished running node test.retailrocket.not_null_feature_cooccur_pair_id.2f6bcfecd7
+[0m09:36:16.573141 [debug] [Thread-3 (]: Began running node test.retailrocket.unique_dim_categories_categoryid.e2df4630b3
+[0m09:36:16.573546 [debug] [Thread-2 (]: Began executing node test.retailrocket.relationships_dim_items_categoryid__categoryid__ref_dim_categories_.6c6b741753
+[0m09:36:16.572652 [debug] [Thread-4 (]: Using postgres connection "test.retailrocket.relationships_fct_funnel_categoryid__categoryid__ref_dim_categories_.3200328300"
+[0m09:36:16.573999 [debug] [Thread-1 (]: On test.retailrocket.not_null_feature_table_itemid.fa4003abab: Close
+[0m09:36:16.574362 [info ] [Thread-3 (]: 13 of 17 START test unique_dim_categories_categoryid ........................... [RUN]
+[0m09:36:16.578701 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly test.retailrocket.not_null_feature_cooccur_pair_id.2f6bcfecd7, now test.retailrocket.unique_dim_categories_categoryid.e2df4630b3)
+[0m09:36:16.577931 [debug] [Thread-4 (]: On test.retailrocket.relationships_fct_funnel_categoryid__categoryid__ref_dim_categories_.3200328300: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "test.retailrocket.relationships_fct_funnel_categoryid__categoryid__ref_dim_categories_.3200328300"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+with child as (
+    select categoryid as from_field
+    from "retailrocket"."gold"."fct_funnel"
+    where categoryid is not null
+),
+
+parent as (
+    select categoryid as to_field
+    from "retailrocket"."gold"."dim_categories"
+)
+
+select
+    from_field
+
+from child
+left join parent
+    on child.from_field = parent.to_field
+
+where parent.to_field is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m09:36:16.580284 [debug] [Thread-4 (]: Opening a new connection, currently in state closed
+[0m09:36:16.579879 [debug] [Thread-3 (]: Began compiling node test.retailrocket.unique_dim_categories_categoryid.e2df4630b3
+[0m09:36:16.577464 [debug] [Thread-2 (]: Writing runtime sql for node "test.retailrocket.relationships_dim_items_categoryid__categoryid__ref_dim_categories_.6c6b741753"
+[0m09:36:16.579448 [info ] [Thread-1 (]: 10 of 17 PASS not_null_feature_table_itemid .................................... [[32mPASS[0m in 0.05s]
+[0m09:36:16.587708 [debug] [Thread-1 (]: Finished running node test.retailrocket.not_null_feature_table_itemid.fa4003abab
+[0m09:36:16.588291 [debug] [Thread-1 (]: Began running node test.retailrocket.unique_dim_items_itemid.65ef0ab193
+[0m09:36:16.588860 [debug] [Thread-2 (]: Using postgres connection "test.retailrocket.relationships_dim_items_categoryid__categoryid__ref_dim_categories_.6c6b741753"
+[0m09:36:16.586742 [debug] [Thread-3 (]: Writing injected SQL for node "test.retailrocket.unique_dim_categories_categoryid.e2df4630b3"
+[0m09:36:16.589398 [info ] [Thread-1 (]: 14 of 17 START test unique_dim_items_itemid .................................... [RUN]
+[0m09:36:16.591065 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.retailrocket.not_null_feature_table_itemid.fa4003abab, now test.retailrocket.unique_dim_items_itemid.65ef0ab193)
+[0m09:36:16.591466 [debug] [Thread-1 (]: Began compiling node test.retailrocket.unique_dim_items_itemid.65ef0ab193
+[0m09:36:16.590343 [debug] [Thread-2 (]: On test.retailrocket.relationships_dim_items_categoryid__categoryid__ref_dim_categories_.6c6b741753: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "test.retailrocket.relationships_dim_items_categoryid__categoryid__ref_dim_categories_.6c6b741753"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+with child as (
+    select categoryid as from_field
+    from "retailrocket"."gold"."dim_items"
+    where categoryid is not null
+),
+
+parent as (
+    select categoryid as to_field
+    from "retailrocket"."gold"."dim_categories"
+)
+
+select
+    from_field
+
+from child
+left join parent
+    on child.from_field = parent.to_field
+
+where parent.to_field is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m09:36:16.596576 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m09:36:16.589976 [debug] [Thread-4 (]: SQL status: SELECT 1 in 0.010 seconds
+[0m09:36:16.598696 [debug] [Thread-4 (]: On test.retailrocket.relationships_fct_funnel_categoryid__categoryid__ref_dim_categories_.3200328300: ROLLBACK
+[0m09:36:16.595557 [debug] [Thread-1 (]: Writing injected SQL for node "test.retailrocket.unique_dim_items_itemid.65ef0ab193"
+[0m09:36:16.596008 [debug] [Thread-3 (]: Began executing node test.retailrocket.unique_dim_categories_categoryid.e2df4630b3
+[0m09:36:16.601694 [debug] [Thread-3 (]: Writing runtime sql for node "test.retailrocket.unique_dim_categories_categoryid.e2df4630b3"
+[0m09:36:16.602188 [debug] [Thread-4 (]: On test.retailrocket.relationships_fct_funnel_categoryid__categoryid__ref_dim_categories_.3200328300: Close
+[0m09:36:16.603066 [debug] [Thread-1 (]: Began executing node test.retailrocket.unique_dim_items_itemid.65ef0ab193
+[0m09:36:16.606274 [debug] [Thread-1 (]: Writing runtime sql for node "test.retailrocket.unique_dim_items_itemid.65ef0ab193"
+[0m09:36:16.607200 [info ] [Thread-4 (]: 12 of 17 PASS relationships_fct_funnel_categoryid__categoryid__ref_dim_categories_  [[32mPASS[0m in 0.06s]
+[0m09:36:16.609209 [debug] [Thread-4 (]: Finished running node test.retailrocket.relationships_fct_funnel_categoryid__categoryid__ref_dim_categories_.3200328300
+[0m09:36:16.609653 [debug] [Thread-4 (]: Began running node test.retailrocket.unique_fct_sessions_session_id.cb0d4599f3
+[0m09:36:16.607868 [debug] [Thread-2 (]: SQL status: SELECT 1 in 0.011 seconds
+[0m09:36:16.612031 [debug] [Thread-2 (]: On test.retailrocket.relationships_dim_items_categoryid__categoryid__ref_dim_categories_.6c6b741753: ROLLBACK
+[0m09:36:16.608518 [debug] [Thread-3 (]: Using postgres connection "test.retailrocket.unique_dim_categories_categoryid.e2df4630b3"
+[0m09:36:16.610565 [debug] [Thread-1 (]: Using postgres connection "test.retailrocket.unique_dim_items_itemid.65ef0ab193"
+[0m09:36:16.610030 [info ] [Thread-4 (]: 15 of 17 START test unique_fct_sessions_session_id ............................. [RUN]
+[0m09:36:16.614025 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly test.retailrocket.relationships_fct_funnel_categoryid__categoryid__ref_dim_categories_.3200328300, now test.retailrocket.unique_fct_sessions_session_id.cb0d4599f3)
+[0m09:36:16.614407 [debug] [Thread-4 (]: Began compiling node test.retailrocket.unique_fct_sessions_session_id.cb0d4599f3
+[0m09:36:16.618406 [debug] [Thread-4 (]: Writing injected SQL for node "test.retailrocket.unique_fct_sessions_session_id.cb0d4599f3"
+[0m09:36:16.612652 [debug] [Thread-3 (]: On test.retailrocket.unique_dim_categories_categoryid.e2df4630b3: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "test.retailrocket.unique_dim_categories_categoryid.e2df4630b3"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+select
+    categoryid as unique_field,
+    count(*) as n_records
+
+from "retailrocket"."gold"."dim_categories"
+where categoryid is not null
+group by categoryid
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m09:36:16.613220 [debug] [Thread-2 (]: On test.retailrocket.relationships_dim_items_categoryid__categoryid__ref_dim_categories_.6c6b741753: Close
+[0m09:36:16.613587 [debug] [Thread-1 (]: On test.retailrocket.unique_dim_items_itemid.65ef0ab193: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "test.retailrocket.unique_dim_items_itemid.65ef0ab193"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+select
+    itemid as unique_field,
+    count(*) as n_records
+
+from "retailrocket"."gold"."dim_items"
+where itemid is not null
+group by itemid
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m09:36:16.619870 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m09:36:16.620531 [info ] [Thread-2 (]: 11 of 17 PASS relationships_dim_items_categoryid__categoryid__ref_dim_categories_  [[32mPASS[0m in 0.06s]
+[0m09:36:16.618895 [debug] [Thread-3 (]: Opening a new connection, currently in state closed
+[0m09:36:16.619505 [debug] [Thread-4 (]: Began executing node test.retailrocket.unique_fct_sessions_session_id.cb0d4599f3
+[0m09:36:16.624996 [debug] [Thread-4 (]: Writing runtime sql for node "test.retailrocket.unique_fct_sessions_session_id.cb0d4599f3"
+[0m09:36:16.621346 [debug] [Thread-2 (]: Finished running node test.retailrocket.relationships_dim_items_categoryid__categoryid__ref_dim_categories_.6c6b741753
+[0m09:36:16.625731 [debug] [Thread-2 (]: Began running node test.retailrocket.unique_feature_cooccur_pair_id.c7cb74ed16
+[0m09:36:16.626603 [debug] [Thread-4 (]: Using postgres connection "test.retailrocket.unique_fct_sessions_session_id.cb0d4599f3"
+[0m09:36:16.628005 [debug] [Thread-4 (]: On test.retailrocket.unique_fct_sessions_session_id.cb0d4599f3: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "test.retailrocket.unique_fct_sessions_session_id.cb0d4599f3"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+select
+    session_id as unique_field,
+    count(*) as n_records
+
+from "retailrocket"."gold"."fct_sessions"
+where session_id is not null
+group by session_id
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m09:36:16.628351 [debug] [Thread-4 (]: Opening a new connection, currently in state closed
+[0m09:36:16.627636 [debug] [Thread-1 (]: SQL status: SELECT 1 in 0.008 seconds
+[0m09:36:16.627115 [debug] [Thread-3 (]: SQL status: SELECT 1 in 0.008 seconds
+[0m09:36:16.626258 [info ] [Thread-2 (]: 16 of 17 START test unique_feature_cooccur_pair_id ............................. [RUN]
+[0m09:36:16.629995 [debug] [Thread-1 (]: On test.retailrocket.unique_dim_items_itemid.65ef0ab193: ROLLBACK
+[0m09:36:16.631411 [debug] [Thread-3 (]: On test.retailrocket.unique_dim_categories_categoryid.e2df4630b3: ROLLBACK
+[0m09:36:16.631853 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.retailrocket.relationships_dim_items_categoryid__categoryid__ref_dim_categories_.6c6b741753, now test.retailrocket.unique_feature_cooccur_pair_id.c7cb74ed16)
+[0m09:36:16.632317 [debug] [Thread-2 (]: Began compiling node test.retailrocket.unique_feature_cooccur_pair_id.c7cb74ed16
+[0m09:36:16.638096 [debug] [Thread-2 (]: Writing injected SQL for node "test.retailrocket.unique_feature_cooccur_pair_id.c7cb74ed16"
+[0m09:36:16.638586 [debug] [Thread-3 (]: On test.retailrocket.unique_dim_categories_categoryid.e2df4630b3: Close
+[0m09:36:16.632763 [debug] [Thread-1 (]: On test.retailrocket.unique_dim_items_itemid.65ef0ab193: Close
+[0m09:36:16.639213 [debug] [Thread-4 (]: SQL status: SELECT 1 in 0.011 seconds
+[0m09:36:16.642196 [debug] [Thread-4 (]: On test.retailrocket.unique_fct_sessions_session_id.cb0d4599f3: ROLLBACK
+[0m09:36:16.640308 [info ] [Thread-3 (]: 13 of 17 PASS unique_dim_categories_categoryid ................................. [[32mPASS[0m in 0.06s]
+[0m09:36:16.644232 [debug] [Thread-3 (]: Finished running node test.retailrocket.unique_dim_categories_categoryid.e2df4630b3
+[0m09:36:16.645306 [debug] [Thread-3 (]: Began running node test.retailrocket.unique_feature_table_itemid.b4829dd026
+[0m09:36:16.642818 [debug] [Thread-2 (]: Began executing node test.retailrocket.unique_feature_cooccur_pair_id.c7cb74ed16
+[0m09:36:16.643427 [info ] [Thread-1 (]: 14 of 17 PASS unique_dim_items_itemid .......................................... [[32mPASS[0m in 0.05s]
+[0m09:36:16.644817 [debug] [Thread-4 (]: On test.retailrocket.unique_fct_sessions_session_id.cb0d4599f3: Close
+[0m09:36:16.645761 [info ] [Thread-3 (]: 17 of 17 START test unique_feature_table_itemid ................................ [RUN]
+[0m09:36:16.650722 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly test.retailrocket.unique_dim_categories_categoryid.e2df4630b3, now test.retailrocket.unique_feature_table_itemid.b4829dd026)
+[0m09:36:16.650201 [debug] [Thread-1 (]: Finished running node test.retailrocket.unique_dim_items_itemid.65ef0ab193
+[0m09:36:16.651522 [info ] [Thread-4 (]: 15 of 17 PASS unique_fct_sessions_session_id ................................... [[32mPASS[0m in 0.04s]
+[0m09:36:16.652626 [debug] [Thread-4 (]: Finished running node test.retailrocket.unique_fct_sessions_session_id.cb0d4599f3
+[0m09:36:16.649592 [debug] [Thread-2 (]: Writing runtime sql for node "test.retailrocket.unique_feature_cooccur_pair_id.c7cb74ed16"
+[0m09:36:16.652004 [debug] [Thread-3 (]: Began compiling node test.retailrocket.unique_feature_table_itemid.b4829dd026
+[0m09:36:16.657044 [debug] [Thread-3 (]: Writing injected SQL for node "test.retailrocket.unique_feature_table_itemid.b4829dd026"
+[0m09:36:16.657908 [debug] [Thread-3 (]: Began executing node test.retailrocket.unique_feature_table_itemid.b4829dd026
+[0m09:36:16.660628 [debug] [Thread-3 (]: Writing runtime sql for node "test.retailrocket.unique_feature_table_itemid.b4829dd026"
+[0m09:36:16.661236 [debug] [Thread-2 (]: Using postgres connection "test.retailrocket.unique_feature_cooccur_pair_id.c7cb74ed16"
+[0m09:36:16.661659 [debug] [Thread-2 (]: On test.retailrocket.unique_feature_cooccur_pair_id.c7cb74ed16: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "test.retailrocket.unique_feature_cooccur_pair_id.c7cb74ed16"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+select
+    pair_id as unique_field,
+    count(*) as n_records
+
+from "retailrocket"."gold"."feature_cooccur"
+where pair_id is not null
+group by pair_id
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m09:36:16.662096 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m09:36:16.662462 [debug] [Thread-3 (]: Using postgres connection "test.retailrocket.unique_feature_table_itemid.b4829dd026"
+[0m09:36:16.662901 [debug] [Thread-3 (]: On test.retailrocket.unique_feature_table_itemid.b4829dd026: /* {"app": "dbt", "dbt_version": "1.12.0rc1", "profile_name": "retailrocket", "target_name": "dev", "node_id": "test.retailrocket.unique_feature_table_itemid.b4829dd026"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+select
+    itemid as unique_field,
+    count(*) as n_records
+
+from "retailrocket"."gold"."feature_table"
+where itemid is not null
+group by itemid
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m09:36:16.663230 [debug] [Thread-3 (]: Opening a new connection, currently in state closed
+[0m09:36:16.668491 [debug] [Thread-2 (]: SQL status: SELECT 1 in 0.006 seconds
+[0m09:36:16.671204 [debug] [Thread-2 (]: On test.retailrocket.unique_feature_cooccur_pair_id.c7cb74ed16: ROLLBACK
+[0m09:36:16.669136 [debug] [Thread-3 (]: SQL status: SELECT 1 in 0.006 seconds
+[0m09:36:16.672630 [debug] [Thread-3 (]: On test.retailrocket.unique_feature_table_itemid.b4829dd026: ROLLBACK
+[0m09:36:16.673307 [debug] [Thread-2 (]: On test.retailrocket.unique_feature_cooccur_pair_id.c7cb74ed16: Close
+[0m09:36:16.674616 [debug] [Thread-3 (]: On test.retailrocket.unique_feature_table_itemid.b4829dd026: Close
+[0m09:36:16.674260 [info ] [Thread-2 (]: 16 of 17 PASS unique_feature_cooccur_pair_id ................................... [[32mPASS[0m in 0.04s]
+[0m09:36:16.675340 [debug] [Thread-2 (]: Finished running node test.retailrocket.unique_feature_cooccur_pair_id.c7cb74ed16
+[0m09:36:16.675960 [info ] [Thread-3 (]: 17 of 17 PASS unique_feature_table_itemid ...................................... [[32mPASS[0m in 0.03s]
+[0m09:36:16.676569 [debug] [Thread-3 (]: Finished running node test.retailrocket.unique_feature_table_itemid.b4829dd026
+[0m09:36:16.678231 [debug] [MainThread]: On master: COMMIT
+[0m09:36:16.678612 [debug] [MainThread]: Using postgres connection "master"
+[0m09:36:16.678916 [debug] [MainThread]: On master: COMMIT
+[0m09:36:16.679211 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m09:36:16.684298 [debug] [MainThread]: SQL status: COMMIT in 0.005 seconds
+[0m09:36:16.685063 [debug] [MainThread]: On master: Close
+[0m09:36:16.685656 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m09:36:16.686028 [debug] [MainThread]: Connection 'test.retailrocket.unique_dim_items_itemid.65ef0ab193' was properly closed.
+[0m09:36:16.686320 [debug] [MainThread]: Connection 'test.retailrocket.unique_feature_table_itemid.b4829dd026' was properly closed.
+[0m09:36:16.686593 [debug] [MainThread]: Connection 'test.retailrocket.unique_feature_cooccur_pair_id.c7cb74ed16' was properly closed.
+[0m09:36:16.686851 [debug] [MainThread]: Connection 'test.retailrocket.unique_fct_sessions_session_id.cb0d4599f3' was properly closed.
+[0m09:36:16.687196 [info ] [MainThread]: 
+[0m09:36:16.687549 [info ] [MainThread]: Finished running 17 data tests in 0 hours 0 minutes and 0.41 seconds (0.41s).
+[0m09:36:16.689928 [debug] [MainThread]: Command end result
+[0m09:36:16.724266 [debug] [MainThread]: Wrote artifact WritableManifest to /home/tondaiquoc/Workspace/Project/RetailRocket_EC_Intelligence_Platform/dbt/retailrocket/target/manifest.json
+[0m09:36:16.727778 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/tondaiquoc/Workspace/Project/RetailRocket_EC_Intelligence_Platform/dbt/retailrocket/target/semantic_manifest.json
+[0m09:36:16.729750 [debug] [MainThread]: Wrote artifact OsiDocument to /home/tondaiquoc/Workspace/Project/RetailRocket_EC_Intelligence_Platform/dbt/retailrocket/target/osi_document.json
+[0m09:36:16.737454 [debug] [MainThread]: Wrote artifact RunExecutionResult to /home/tondaiquoc/Workspace/Project/RetailRocket_EC_Intelligence_Platform/dbt/retailrocket/target/run_results.json
+[0m09:36:16.738120 [info ] [MainThread]: 
+[0m09:36:16.738523 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m09:36:16.738881 [info ] [MainThread]: 
+[0m09:36:16.739296 [info ] [MainThread]: Done. PASS=17 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=17
+[0m09:36:16.740501 [debug] [MainThread]: Resource report: {"command_name": "test", "command_success": true, "command_wall_clock_time": 1.1917093, "process_in_blocks": "624", "process_kernel_time": 0.244787, "process_mem_max_rss": "148372", "process_out_blocks": "2776", "process_user_time": 2.09266}
+[0m09:36:16.741049 [debug] [MainThread]: Command `dbt test` succeeded at 09:36:16.740941 after 1.19 seconds
+[0m09:36:16.741419 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f661ab5e750>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f6618555d30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f6618555ff0>]}
+[0m09:36:16.741782 [debug] [MainThread]: Flushing usage events
+[0m09:36:19.196963 [debug] [MainThread]: An error was encountered while trying to flush usage events
