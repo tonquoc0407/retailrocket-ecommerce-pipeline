@@ -9,7 +9,8 @@ from pipeline_log import log_run, now_utc
 SESSION_TIMEOUT = 1800  # seconds; 30 min of inactivity starts a new session
 
 
-def build_sessions(events):
+def tag_sessions(events):
+    # attach a session_id to every event (reused by feature_gold for co-occurrence)
     w = Window.partitionBy("visitorid").orderBy("timestamp")
 
     # gap to the previous event for this visitor, in seconds
@@ -21,9 +22,12 @@ def build_sessions(events):
     # running sum of the boundary flag = per-visitor session number (no Python loop)
     session_num = F.sum(is_new).over(w.rowsBetween(Window.unboundedPreceding, Window.currentRow))
 
-    tagged = events.withColumn("session_num", session_num) \
+    return events.withColumn("session_num", session_num) \
         .withColumn("session_id", F.concat_ws("-", F.col("visitorid"), F.col("session_num")))
 
+
+def build_sessions(events):
+    tagged = tag_sessions(events)
     is_purchase = F.when(F.col("event") == "transaction", 1).otherwise(0)
 
     sessions = (tagged.groupBy("session_id", "visitorid")
