@@ -60,7 +60,9 @@ def jdbc_props():
 
 
 def write_table(df, table, url, props):
-    df.write.mode("overwrite").jdbc(url, table, properties=props)
+    # truncate instead of drop-and-recreate so dbt views built on these source tables
+    # survive a re-run. (a column change still needs a manual drop / dbt clean.)
+    df.write.mode("overwrite").option("truncate", "true").jdbc(url, table, properties=props)
 
 
 def run(spark, silver_dir, bronze_dir, url, props):
@@ -69,8 +71,11 @@ def run(spark, silver_dir, bronze_dir, url, props):
     categories = spark.read.parquet(f"{bronze_dir}/category_tree")
     item_props = spark.read.parquet(f"{bronze_dir}/item_properties")
 
-    # land the tables dbt reads as sources
-    write_table(events.select("visitorid", "event", "itemid", "categoryid", "event_date"),
+    # land the tables dbt reads as sources. events carry session_id so the dbt
+    # session-feature mart (abandonment model) can aggregate per session.
+    tagged = tag_sessions(events)
+    write_table(tagged.select("visitorid", "event", "itemid", "categoryid",
+                              "event_date", "session_id"),
                 "raw_events", url, props)
     write_table(sessions, "raw_sessions", url, props)
     write_table(categories, "raw_category_tree", url, props)

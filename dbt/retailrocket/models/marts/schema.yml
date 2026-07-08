@@ -39,6 +39,13 @@ models:
       - name: itemid
         tests: [not_null, unique]
 
+  - name: feature_sessions
+    columns:
+      - name: session_id
+        tests: [not_null, unique]
+      - name: abandoned
+        tests: [not_null]
+
   - name: feature_cooccur
     columns:
       - name: pair_id
