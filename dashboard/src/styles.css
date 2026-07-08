@@ -1,0 +1,46 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: #1c2530;
+  background: #f4f6f8;
+}
+
+.app { max-width: 960px; margin: 0 auto; padding: 24px 16px; }
+
+header h1 { margin: 0 0 12px; font-size: 22px; }
+
+nav { display: flex; gap: 8px; margin-bottom: 20px; }
+
+nav button {
+  border: 1px solid #cdd5df;
+  background: #fff;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+nav button.active { background: #4e79a7; color: #fff; border-color: #4e79a7; }
+
+.card {
+  background: #fff;
+  border: 1px solid #e3e8ee;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+.card h2 { margin: 0 0 4px; font-size: 16px; }
+
+.hint { color: #6b7784; font-size: 13px; margin: 0 0 12px; }
+.err { color: #c0392b; font-size: 13px; }
+
+.row { display: flex; gap: 8px; margin-bottom: 12px; }
+.row input, .row select { padding: 6px 8px; border: 1px solid #cdd5df; border-radius: 6px; }
+.row button { padding: 6px 14px; border: none; background: #4e79a7; color: #fff; border-radius: 6px; cursor: pointer; }
+
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #eef1f4; }
+th { color: #6b7784; font-weight: 600; }
+
+.ok { color: #2e7d32; font-weight: 600; }
+.bad { color: #c0392b; font-weight: 600; }

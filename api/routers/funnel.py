@@ -4,7 +4,7 @@ from typing import Optional
 from fastapi import APIRouter, Query
 
 from api.db import get_cursor, GOLD_SCHEMA
-from api.schemas import FunnelRow
+from api.schemas import FunnelRow, TopItem
 
 router = APIRouter()
 
@@ -40,3 +40,21 @@ def funnel_stats(
             params,
         )
         return [FunnelRow(**r) for r in cur.fetchall()]
+
+
+@router.get("/top-items", response_model=list[TopItem])
+def top_items(limit: int = Query(10, ge=1, le=100), min_views: int = Query(20, ge=1)):
+    # rank by conversion rate, but require a minimum view count so a single
+    # 1-view/1-purchase item doesn't top the list at 100%.
+    with get_cursor() as cur:
+        cur.execute(
+            f"""
+            select itemid, categoryid, views, purchases, item_purchase_rate
+            from {GOLD_SCHEMA}.feature_table
+            where views >= %(min_views)s
+            order by item_purchase_rate desc, views desc
+            limit %(limit)s
+            """,
+            {"min_views": min_views, "limit": limit},
+        )
+        return [TopItem(**r) for r in cur.fetchall()]

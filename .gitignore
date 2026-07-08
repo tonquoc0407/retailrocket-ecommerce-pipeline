@@ -15,6 +15,10 @@ venv/
 ml/model_registry/*
 !ml/model_registry/.gitkeep
 
+# dashboard
+node_modules/
+dashboard/dist/
+
 # env / local
 .env
 spark-warehouse/

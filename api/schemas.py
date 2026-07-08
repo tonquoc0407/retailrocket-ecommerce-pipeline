@@ -27,6 +27,14 @@ class FunnelRow(BaseModel):
     purchase_rate: float
 
 
+class TopItem(BaseModel):
+    itemid: int
+    categoryid: Optional[int] = None
+    views: int
+    purchases: int
+    item_purchase_rate: float
+
+
 class AbandonFeatures(BaseModel):
     start_hour: int
     event_count: int

@@ -54,6 +54,24 @@ GET /funnel-stats?category_id=1&from=2015-06-01&to=2015-06-30
 ]
 ```
 
+## GET /top-items
+
+Items with the highest purchase/view rate, from `feature_table`. Requires a minimum view
+count so a single 1-view/1-purchase item doesn't top the list at 100%. Feeds the dashboard
+overview tab.
+
+| param | in | default | notes |
+|---|---|---|---|
+| limit | query | 10 | 1–100 |
+| min_views | query | 20 | minimum views to qualify |
+
+```
+GET /top-items?limit=5
+[
+  {"itemid": 366, "categoryid": 17, "views": 26, "purchases": 6, "item_purchase_rate": 0.23}
+]
+```
+
 ## POST /predict-abandon
 
 Abandonment probability for an at-risk (has-cart) session. Features must match the trained
