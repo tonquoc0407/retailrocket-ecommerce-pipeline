@@ -1,6 +1,6 @@
 # Data flow
 
-How data moves through the layers. Written incrementally, one section per phase.
+How data moves through the layers, from raw CSV to the tables the API serves.
 
 ## Bronze
 

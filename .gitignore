@@ -19,6 +19,10 @@ ml/model_registry/*
 node_modules/
 dashboard/dist/
 
+# editor
+.idea/
+.vscode/
+
 # env / local
 .env
 spark-warehouse/
