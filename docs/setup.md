@@ -1,6 +1,7 @@
 # Setup
 
-Grows as phases land. Right now it covers the Bronze layer and its Postgres dependency.
+Two ways to run: piece by piece for development (the sections up to Tests), or the whole
+stack at once with Docker Compose (last section).
 
 ## Requirements
 
@@ -65,9 +66,61 @@ python ml/abandonment/train.py           # algorithm from ml/abandonment/config.
 python ml/abandonment/train.py --all     # train + compare xgboost / rf / logistic
 ```
 
+## API
+
+Serve the gold tables and the trained abandonment model:
+
+```
+uvicorn api.main:app --reload                 # http://localhost:8000, /docs for Swagger
+```
+
+`/predict-abandon` returns 503 until an abandonment model exists in `ml/model_registry/`;
+the other endpoints only need the gold tables loaded. See `docs/api.md` for the routes.
+
+## Dashboard
+
+React + Vite frontend (`dashboard/`). It calls the API via a dev proxy, so start the API
+first, then:
+
+```
+cd dashboard
+npm install
+npm run dev                                   # http://localhost:5173
+```
+
 ## Tests
 
 ```
 export JAVA_HOME=/path/to/jdk-17
 pytest tests/                                 # runs against tests/fixtures, no Postgres needed
 ```
+
+## Full stack (Docker Compose)
+
+Brings up Postgres, Airflow (webserver + scheduler), the API, Prometheus, Grafana, and the
+statsd-exporter on one network:
+
+```
+cp .env.example .env                          # adjust creds/webhook if needed
+docker compose up -d --build
+```
+
+Services:
+
+| service | url | notes |
+|---|---|---|
+| Airflow | http://localhost:8080 | login admin/admin |
+| API | http://localhost:8000 | `/docs`, `/metrics` |
+| Prometheus | http://localhost:9090 | scrapes api + airflow |
+| Grafana | http://localhost:3000 | admin/admin, dashboard "RetailRocket Platform" |
+
+Seed data and run the pipeline:
+
+1. Put the Kaggle CSVs under `data/raw/` (the repo is mounted into the Airflow containers).
+2. In the Airflow UI, unpause and trigger **retailrocket_pipeline**. It runs
+   bronze → silver → sessions → gold → dbt run/test → train recommenders + abandonment.
+3. Once it finishes, the API endpoints return data and the Grafana panels populate.
+
+The dashboard isn't containerised — run it with `npm run dev` (above) pointing at the API.
+
+Tear down with `docker compose down` (add `-v` to also drop the Postgres volume).
