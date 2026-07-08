@@ -1,0 +1,30 @@
+# maps Airflow's statsd metric names to Prometheus metrics with labels.
+# Airflow sends dotted names like airflow.dag.<dag_id>.<task_id>.duration.
+mappings:
+  - match: "airflow.dag.*.*.duration"
+    name: "airflow_task_duration_ms"
+    labels:
+      dag_id: "$1"
+      task_id: "$2"
+
+  - match: "airflow.dagrun.duration.success.*"
+    name: "airflow_dagrun_duration_success_ms"
+    labels:
+      dag_id: "$1"
+
+  - match: "airflow.dagrun.duration.failed.*"
+    name: "airflow_dagrun_duration_failed_ms"
+    labels:
+      dag_id: "$1"
+
+  - match: "airflow.ti_failures"
+    name: "airflow_task_failures_total"
+
+  - match: "airflow.ti_successes"
+    name: "airflow_task_successes_total"
+
+  # drop everything else so the exporter isn't flooded with unmapped series
+  - match: "."
+    match_type: regex
+    action: drop
+    name: "dropped"
