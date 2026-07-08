@@ -1,4 +1,13 @@
 pyspark==3.5.1
+setuptools>=68  # provides the distutils shim pyspark.ml needs on python 3.12+
 psycopg2-binary==2.9.9
 python-dotenv==1.0.1
 pytest==8.2.0
+
+# modeling
+scikit-learn==1.5.0
+xgboost==2.0.3
+pandas==2.2.2
+pyyaml==6.0.1
+joblib==1.4.2
+# lightgbm is an optional abandonment backend (config algorithm: lightgbm)
