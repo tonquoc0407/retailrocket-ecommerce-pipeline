@@ -1,0 +1,4 @@
+timestamp,itemid,property,value
+1000,100,categoryid,10
+5000,100,categoryid,20
+1000,100,available,1

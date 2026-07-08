@@ -1,0 +1,5 @@
+timestamp,visitorid,event,itemid,transactionid
+500,1,view,100,
+1000,1,view,100,
+2000,1,view,100,
+6000,1,view,100,
