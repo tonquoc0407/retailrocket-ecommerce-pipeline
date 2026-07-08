@@ -57,3 +57,32 @@ An event therefore only ever sees snapshots at or before its own timestamp. An e
 predates the item's first snapshot gets a null category. (The same pattern could enrich
 other time-varying properties like `available` later.)
 
+## Sessions
+
+`spark_jobs/session_builder.py` reconstructs browsing sessions from the enriched events and
+writes them to `data/silver/sessions` (partitioned by `session_date`).
+
+A session is a run of activity by one visitor with no gap longer than **30 minutes**
+(`SESSION_TIMEOUT = 1800s`, the usual web-analytics default). The reconstruction is done
+entirely with window functions, no per-visitor Python loop:
+
+1. Partition by `visitorid`, order by `timestamp`.
+2. `lag(timestamp)` gives the previous event's time; the gap in seconds is the difference.
+3. A new session starts when there's no previous event (first event for the visitor) or the
+   gap exceeds the timeout. That boolean is cast to 0/1.
+4. A running `sum()` of that flag over the ordered window is the session number — every
+   event lands in the right session without iterating.
+
+Events are then grouped per `(visitorid, session_num)` into one row per session:
+
+| column | meaning |
+|---|---|
+| `session_id` | `visitorid-session_num` |
+| `visitorid` | the visitor |
+| `start_time` / `end_time` | first / last event timestamp in the session |
+| `event_count` | events in the session |
+| `has_purchase` | whether any event was a `transaction` |
+
+`has_purchase` is what the abandonment model later keys off (a session with an `addtocart`
+but no purchase is the abandonment case).
+
