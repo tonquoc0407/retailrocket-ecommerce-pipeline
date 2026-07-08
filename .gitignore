@@ -19,6 +19,11 @@ ml/model_registry/*
 node_modules/
 dashboard/dist/
 
+# dbt build artifacts
+dbt/retailrocket/target/
+dbt/retailrocket/logs/
+dbt/retailrocket/dbt_packages/
+
 # editor
 .idea/
 .vscode/
@@ -28,3 +33,4 @@ dashboard/dist/
 spark-warehouse/
 metastore_db/
 derby.log
+dbt/retailrocket/.user.yml
