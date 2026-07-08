@@ -1,0 +1,78 @@
+flowchart TB
+    subgraph SRC["Data Source"]
+        A1[events.csv - 2.7M rows]
+        A2[item_properties.csv - ~20M rows]
+        A3[category_tree.csv]
+    end
+
+    subgraph ORCH["Orchestration"]
+        AF[Airflow DAG - daily batch schedule]
+    end
+
+    subgraph PROC["Processing - PySpark"]
+        B1[Bronze Layer<br/>Raw to Parquet<br/>partitioned by date]
+        B2[Silver Layer<br/>Clean, dedupe<br/>Point-in-time join<br/>events + item_properties]
+        B3[Session Reconstruction<br/>window function<br/>30min timeout]
+    end
+
+    subgraph MODEL["Modeling - dbt + Postgres"]
+        C1[(fct_sessions)]
+        C2[(fct_funnel<br/>view to cart to purchase)]
+        C3[(dim_items / dim_categories)]
+        C4[(feature_table<br/>popularity, conversion rate,<br/>co-purchase pairs)]
+    end
+
+    subgraph AI["AI / Modeling Layer"]
+        D1[Recommendation model<br/>ALS baseline<br/>swappable: item2vec / co-occurrence]
+        D2[Abandonment classifier<br/>XGBoost baseline<br/>swappable: LightGBM / RandomForest]
+    end
+
+    subgraph SERVE["Serving"]
+        E1[FastAPI<br/>/recommend/item_id<br/>/funnel-stats<br/>/predict-abandon<br/>/metrics]
+    end
+
+    subgraph UI["Dashboard"]
+        F1[React + Recharts<br/>Funnel chart<br/>Top items<br/>Recommend demo<br/>Pipeline health tab]
+    end
+
+    subgraph MON["Monitoring / Logging"]
+        M1[Structured JSON logs<br/>Airflow + Spark + FastAPI]
+        M2[(pipeline_runs table<br/>Postgres<br/>rows, duration, status)]
+        M3[Prometheus<br/>scrapes /metrics + statsd exporter]
+        M4[Grafana<br/>dashboards: latency, throughput,<br/>DAG run status, error rate]
+    end
+
+    subgraph INFRA["Infra"]
+        G1[Docker Compose<br/>single host - dev and deploy]
+    end
+
+    A1 --> AF
+    A2 --> AF
+    A3 --> AF
+    AF --> B1 --> B2 --> B3
+    B3 --> C1
+    B2 --> C2
+    B2 --> C3
+    C1 --> C4
+    C2 --> C4
+    C4 --> D1
+    C4 --> D2
+    D1 --> E1
+    D2 --> E1
+    C2 --> E1
+    E1 --> F1
+    M2 --> F1
+
+    AF -.emits.-> M1
+    B1 -.emits.-> M1
+    B2 -.emits.-> M1
+    E1 -.emits.-> M1
+    AF -.writes.-> M2
+    E1 -.exposes.-> M3
+    AF -.exposes via exporter.-> M3
+    M3 --> M4
+
+    G1 -.hosts.-> AF
+    G1 -.hosts.-> E1
+    G1 -.hosts.-> M3
+    G1 -.hosts.-> M4

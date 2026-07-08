@@ -1,0 +1,22 @@
+# data
+data/raw/*
+data/bronze/*
+data/silver/*
+!data/**/.gitkeep
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+
+# models
+ml/model_registry/*
+!ml/model_registry/.gitkeep
+
+# env / local
+.env
+spark-warehouse/
+metastore_db/
+derby.log
