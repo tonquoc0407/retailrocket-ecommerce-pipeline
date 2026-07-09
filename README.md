@@ -1,5 +1,7 @@
 # RetailRocket E-commerce Intelligence Platform
 
+[![CI](https://github.com/tonquoc0407/retailrocket-ecommerce-pipeline/actions/workflows/ci.yml/badge.svg)](https://github.com/tonquoc0407/retailrocket-ecommerce-pipeline/actions/workflows/ci.yml)
+
 A batch data platform over the [RetailRocket e-commerce dataset](https://www.kaggle.com/datasets/retailrocket/ecommerce-dataset).
 It reconstructs user sessions from raw clickstream events, builds analytics and feature
 tables with a medallion (Bronze/Silver/Gold) layout, trains two models on top of them, and
@@ -186,7 +188,12 @@ npm run dev                                   # http://localhost:5173, proxies t
 ```
 export JAVA_HOME=/path/to/jdk-17
 pytest tests/                                 # runs against fixtures under tests/, no Postgres needed
+ruff check .                                  # lint
 ```
+
+GitHub Actions (`.github/workflows/ci.yml`) runs three jobs on every push and pull request:
+`ruff` lint, the `pytest` suite (on JDK 17), and `dbt compile` against a throwaway Postgres
+to check that every model — incremental logic included — parses and its refs resolve.
 
 ## Scope
 
