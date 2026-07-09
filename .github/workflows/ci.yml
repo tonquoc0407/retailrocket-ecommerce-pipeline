@@ -58,7 +58,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: pip install dbt-postgres==1.8.2
+      # dbt-core must be pinned too: dbt-postgres 1.8.2 has no upper bound on it, so
+      # pip otherwise resolves the 2.0 prerelease (dbt Fusion), which dropped postgres.
+      - run: pip install dbt-core==1.8.9 dbt-postgres==1.8.2
       # compile validates that every model (incremental logic included) parses and
       # its refs resolve against the adapter, without needing the raw data loaded.
       - run: dbt compile --profiles-dir dbt/retailrocket --project-dir dbt/retailrocket

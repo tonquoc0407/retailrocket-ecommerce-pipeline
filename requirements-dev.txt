@@ -1,4 +1,7 @@
 -r requirements.txt
 
 ruff==0.15.20
+# pin dbt-core as well; dbt-postgres doesn't cap it and pip picks up the 2.0
+# prerelease (dbt Fusion), which has no postgres adapter.
+dbt-core==1.8.9
 dbt-postgres==1.8.2
