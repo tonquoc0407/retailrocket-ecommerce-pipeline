@@ -32,13 +32,24 @@ CATEGORY_SCHEMA = StructType([
 def read_csv(spark, path, schema):
     return spark.read.csv(path, header=True, schema=schema)
 
-def run(spark, raw_dir, out_dir):
+def run(spark, raw_dir, out_dir, since=None):
     events = read_csv(spark, f"{raw_dir}/events.csv", EVENTS_SCHEMA)
     # partition column derived from the epoch-ms timestamp
     events = events.withColumn(
         "event_date",
         F.to_date(F.from_unixtime(F.col("timestamp") / 1000)),
     )
+
+    if since:
+        # incremental run: keep only events on/after the watermark and replace just
+        # those event_date partitions. dynamic overwrite leaves older partitions
+        # untouched, so a daily run rewrites one day instead of the whole history.
+        # the item/category dimension snapshots don't change per day, so we skip them.
+        events = events.filter(F.col("event_date") >= F.to_date(F.lit(since)))
+        spark.conf.set("spark.sql.sources.partitionOverwriteMode", "dynamic")
+        events.write.mode("overwrite").partitionBy("event_date") \
+            .parquet(f"{out_dir}/events")
+        return events.count()
 
     props = read_csv(spark, f"{raw_dir}/item_properties_part1.csv", ITEM_PROPS_SCHEMA) \
         .unionByName(read_csv(spark, f"{raw_dir}/item_properties_part2.csv", ITEM_PROPS_SCHEMA))
@@ -57,6 +68,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--raw-dir", default="data/raw")
     ap.add_argument("--out-dir", default="data/bronze")
+    ap.add_argument("--since", help="YYYY-MM-DD; only ingest events on/after this date")
     ap.add_argument("--no-log", action="store_true", help="skip writing to pipeline_runs")
     args = ap.parse_args()
 
@@ -65,7 +77,7 @@ def main():
     started = now_utc()
     t0 = time.perf_counter()
     try:
-        rows = run(spark, args.raw_dir, args.out_dir)
+        rows = run(spark, args.raw_dir, args.out_dir, args.since)
     except Exception as e:
         if not args.no_log:
             log_run("bronze_ingest", None, time.perf_counter() - t0,

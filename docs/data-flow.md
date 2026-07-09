@@ -25,6 +25,13 @@ Each run writes one row to `pipeline_runs` (task, rows written, duration, status
 dashboard health tab has a record of it. On failure the job logs a `failed` row and
 re-raises.
 
+By default the job overwrites the whole `events` dataset. Passing `--since YYYY-MM-DD`
+switches it to an incremental load: it keeps only events on/after the watermark and writes
+them with dynamic partition overwrite, so only those `event_date` partitions are replaced
+and the older history is left in place. A daily run then rewrites one day instead of
+rescanning everything. The item/category dimension snapshots don't change day to day, so an
+incremental run skips them.
+
 ## Silver
 
 `spark_jobs/silver_transform.py` turns the raw Bronze events into a clean, enriched
@@ -107,7 +114,7 @@ rename/trim the raw tables; marts build the business tables:
 | mart | grain | notes |
 |---|---|---|
 | `fct_sessions` | session | adds `duration_seconds` |
-| `fct_funnel` | category × day | view→cart→purchase counts + step conversion rates; null-category events dropped (can't attribute) |
+| `fct_funnel` | category × day | view→cart→purchase counts + step conversion rates; null-category events dropped (can't attribute); **incremental** |
 | `dim_categories` | category | `parentid`, `is_root` |
 | `dim_items` | item | latest category joined to its parent |
 | `feature_table` | item | popularity + item/category conversion — feeds both models |
@@ -115,6 +122,14 @@ rename/trim the raw tables; marts build the business tables:
 
 `feature_table` is item-grained; the co-occurrence pairs are a different grain so they get
 their own table rather than being forced into item rows.
+
+`fct_funnel` is materialized `incremental` (`delete+insert` on `categoryid, event_date`).
+On a normal run it only recomputes the last few days of the calendar — `is_incremental()`
+adds a `event_date >= max(event_date) - 3 days` filter — and replaces those rows rather than
+appending, since it's an aggregate and a re-touched day would otherwise double count. The
+3-day lookback absorbs late-arriving events that land on an earlier date. The item-grained
+`feature_table` aggregates over all of history, so it stays a full-refresh table; only the
+day-grained fact is worth the incremental machinery.
 
 dbt tests cover `not_null`/`unique` on every primary key and `relationships` from
 `fct_funnel` and `dim_items` back to `dim_categories`.

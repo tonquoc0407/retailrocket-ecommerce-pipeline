@@ -31,3 +31,21 @@ def test_bronze_writes_all_tables(spark, tmp_path):
 
     cats = spark.read.parquet(f"{out}/category_tree")
     assert cats.count() == 3
+
+def test_bronze_incremental_only_rewrites_new_partitions(spark, tmp_path):
+    out = str(tmp_path / "bronze")
+    bronze_ingest.run(spark, FIXTURES, out)  # full load first
+
+    dates = sorted(
+        r[0] for r in
+        spark.read.parquet(f"{out}/events").select("event_date").distinct().collect()
+    )
+    later = dates[-1]
+
+    # re-ingest only the last day
+    written = bronze_ingest.run(spark, FIXTURES, out, since=str(later))
+    assert written == 2  # the two events on the later day, not all 8
+
+    # the earlier partition is left in place, so both days still exist
+    after = spark.read.parquet(f"{out}/events").select("event_date").distinct().count()
+    assert after == 2
