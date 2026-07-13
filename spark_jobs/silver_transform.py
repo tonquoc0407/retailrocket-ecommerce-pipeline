@@ -50,12 +50,28 @@ def point_in_time_category(events, item_props):
     # TODO: same pattern could enrich `available` (in-stock at event time) if needed
     return enriched
 
-def run(spark, bronze_dir, out_dir):
+def run(spark, bronze_dir, out_dir, since=None, until=None):
     events = spark.read.parquet(f"{bronze_dir}/events")
     props = spark.read.parquet(f"{bronze_dir}/item_properties")
 
-    events = dedupe_events(events)
-    enriched = point_in_time_category(events, props)
+    # only the events get windowed, and no lookback is needed: the point-in-time join
+    # carries a category forward from the item's property *snapshots*, never from
+    # neighbouring events, so an event still sees every snapshot at or before it as long
+    # as props stay unwindowed. duplicates share a timestamp, hence an event_date, so
+    # they land in the same window too and the dedupe stays complete. sessions are the
+    # stage that can't do this -- see session_builder.
+    if since:
+        events = events.filter(F.col("event_date") >= F.to_date(F.lit(since)))
+    if until:
+        events = events.filter(F.col("event_date") < F.to_date(F.lit(until)))
+
+    enriched = point_in_time_category(dedupe_events(events), props)
+
+    if since or until:
+        spark.conf.set("spark.sql.sources.partitionOverwriteMode", "dynamic")
+        enriched.write.mode("overwrite").partitionBy("event_date") \
+            .parquet(f"{out_dir}/events_enriched")
+        return enriched.count()
 
     enriched.write.mode("overwrite").partitionBy("event_date") \
         .parquet(f"{out_dir}/events_enriched")
@@ -66,6 +82,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--bronze-dir", default="data/bronze")
     ap.add_argument("--out-dir", default="data/silver")
+    ap.add_argument("--since", help="YYYY-MM-DD, inclusive; enrich events from this date")
+    ap.add_argument("--until", help="YYYY-MM-DD, exclusive; enrich events before this date")
     ap.add_argument("--no-log", action="store_true", help="skip writing to pipeline_runs")
     args = ap.parse_args()
 
@@ -74,7 +92,7 @@ def main():
     started = now_utc()
     t0 = time.perf_counter()
     try:
-        rows = run(spark, args.bronze_dir, args.out_dir)
+        rows = run(spark, args.bronze_dir, args.out_dir, args.since, args.until)
     except Exception as e:
         if not args.no_log:
             log_run("silver_transform", None, time.perf_counter() - t0,

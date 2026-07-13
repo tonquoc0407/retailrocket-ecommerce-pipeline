@@ -1,0 +1,5 @@
+timestamp,visitorid,event,itemid,transactionid
+1433202600000,1,view,100,
+1433203500000,1,addtocart,100,
+1433152800000,2,view,200,
+1433239200000,3,view,300,

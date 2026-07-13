@@ -1,12 +1,13 @@
 import argparse
 import os
 import time
+from datetime import date, timedelta
 
 from pyspark.sql import SparkSession, Window
 from pyspark.sql import functions as F
 
-from pipeline_log import log_run, now_utc
-from session_builder import tag_sessions
+from pipeline_log import connect, log_run, now_utc
+from session_builder import REPROCESS_DAYS, tag_sessions
 
 # pairs seen fewer than this many times are dropped -- noise, and keeps the table small.
 # at full scale you'd also cap to top-k neighbours per item; fine to skip at this scope.
@@ -59,7 +60,55 @@ def write_table(df, table, url, props):
     # survive a re-run. (a column change still needs a manual drop / dbt clean.)
     df.write.mode("overwrite").option("truncate", "true").jdbc(url, table, properties=props)
 
-def run(spark, silver_dir, bronze_dir, url, props):
+def delete_window(table, date_col, since, until):
+    # postgres holds no partitions, so "replace this window" is a delete + append.
+    # skipped when the table isn't there yet -- the first incremental run creates it.
+    with connect() as conn:
+        with conn.cursor() as cur:
+            cur.execute("select to_regclass(%s)", (table,))
+            if cur.fetchone()[0] is None:
+                return
+            cur.execute(
+                f"delete from {table} where {date_col} >= %s and {date_col} < %s",
+                (since, until),
+            )
+
+def run_incremental(spark, silver_dir, url, props, since, until):
+    # read events with the same lookback session_builder uses, so an event just after
+    # midnight is tagged with the session that opened the night before and its
+    # session_id matches raw_sessions -- the dbt session mart joins the two on it.
+    emit_from = date.fromisoformat(since) - timedelta(days=REPROCESS_DAYS)
+    read_from = emit_from - timedelta(days=1)
+
+    events = (spark.read.parquet(f"{silver_dir}/events_enriched")
+              .filter(F.col("event_date") >= F.to_date(F.lit(str(read_from))))
+              .filter(F.col("event_date") < F.to_date(F.lit(until))))
+
+    window_events = (tag_sessions(events)
+                     .filter(F.col("event_date") >= F.to_date(F.lit(since)))
+                     .select("visitorid", "event", "itemid", "categoryid",
+                             "event_date", "session_id"))
+
+    # session_builder rebuilds REPROCESS_DAYS of days already on disk (a session that
+    # straddles midnight only completes on the next run), so postgres has to replace the
+    # same span. session_id is keyed on the session's first timestamp, so a rebuilt
+    # session keeps its id: these rows are an update, not a duplicate insert.
+    sessions = (spark.read.parquet(f"{silver_dir}/sessions")
+                .filter(F.col("session_date") >= F.to_date(F.lit(str(emit_from))))
+                .filter(F.col("session_date") < F.to_date(F.lit(until))))
+
+    delete_window("raw_events", "event_date", since, until)
+    window_events.write.mode("append").jdbc(url, "raw_events", properties=props)
+
+    delete_window("raw_sessions", "session_date", str(emit_from), until)
+    sessions.write.mode("append").jdbc(url, "raw_sessions", properties=props)
+
+    return sessions.count()
+
+def run(spark, silver_dir, bronze_dir, url, props, since=None, until=None):
+    if since and until:
+        return run_incremental(spark, silver_dir, url, props, since, until)
+
     events = spark.read.parquet(f"{silver_dir}/events_enriched")
     sessions = spark.read.parquet(f"{silver_dir}/sessions")
     categories = spark.read.parquet(f"{bronze_dir}/category_tree")
@@ -72,6 +121,13 @@ def run(spark, silver_dir, bronze_dir, url, props):
                               "event_date", "session_id"),
                 "raw_events", url, props)
     write_table(sessions, "raw_sessions", url, props)
+
+    # the other three are whole-history aggregates, not facts of a single day:
+    # cooccur_pairs counts co-views across every session there has ever been, and
+    # item_latest is the newest snapshot per item. neither can be sliced by date, so
+    # they're rebuilt on a full run -- the bootstrap load and the weekly refresh dag --
+    # and left alone by the daily one. what they read is static anyway: bronze's
+    # incremental path never rewrites item_properties or the category tree.
     write_table(categories, "raw_category_tree", url, props)
     write_table(latest_item_snapshot(item_props), "item_latest", url, props)
     write_table(cooccurrence_pairs(events), "cooccur_pairs", url, props)
@@ -82,6 +138,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--silver-dir", default="data/silver")
     ap.add_argument("--bronze-dir", default="data/bronze")
+    ap.add_argument("--since", help="YYYY-MM-DD, inclusive; land this window's facts only")
+    ap.add_argument("--until", help="YYYY-MM-DD, exclusive; land this window's facts only")
     ap.add_argument("--no-log", action="store_true", help="skip writing to pipeline_runs")
     args = ap.parse_args()
 
@@ -95,7 +153,8 @@ def main():
     started = now_utc()
     t0 = time.perf_counter()
     try:
-        rows = run(spark, args.silver_dir, args.bronze_dir, url, props)
+        rows = run(spark, args.silver_dir, args.bronze_dir, url, props,
+                   args.since, args.until)
     except Exception as e:
         if not args.no_log:
             log_run("feature_gold", None, time.perf_counter() - t0,

@@ -1,7 +1,7 @@
 import os
 from datetime import datetime, timezone
 
-def _conn():
+def connect():
     import psycopg2  # imported lazily so transform code runs without the DB driver
     return psycopg2.connect(
         host=os.getenv("POSTGRES_HOST", "localhost"),
@@ -13,7 +13,7 @@ def _conn():
 
 def log_run(task_name, rows_processed, duration_seconds, status,
             started_at, error_message=None):
-    with _conn() as conn:
+    with connect() as conn:
         with conn.cursor() as cur:
             cur.execute(
                 """
