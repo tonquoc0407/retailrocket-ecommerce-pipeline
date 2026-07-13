@@ -117,9 +117,14 @@ Services:
 Seed data and run the pipeline:
 
 1. Put the Kaggle CSVs under `data/raw/` (the repo is mounted into the Airflow containers).
-2. In the Airflow UI, unpause and trigger **retailrocket_pipeline**. It runs
-   bronze → silver → sessions → gold → dbt run/test → train recommenders + abandonment.
-3. Once it finishes, the API endpoints return data and the Grafana panels populate.
+2. In the Airflow UI, unpause **retailrocket_pipeline**. With `catchup=True` it backfills the
+   dataset's calendar (2015-05-03 → 2015-09-18) one day at a time:
+   bronze → silver → sessions → gold facts → dbt run/test. `max_active_runs=1`, so the 139
+   runs go through in order rather than 139 Spark jobs at once.
+3. Unpause **retailrocket_refresh** (weekly) for the whole-history work a daily window can't
+   express: a full `feature_gold` rebuild (`cooccur_pairs`, `item_latest`) and the three
+   trainers.
+4. Once they finish, the API endpoints return data and the Grafana panels populate.
 
 The dashboard isn't containerised — run it with `npm run dev` (above) pointing at the API.
 

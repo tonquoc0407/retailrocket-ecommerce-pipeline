@@ -133,9 +133,15 @@ This starts Postgres, Airflow (webserver + scheduler), the API, Prometheus, Graf
 statsd-exporter. Then:
 
 1. Open Airflow at http://localhost:8080 (admin / admin).
-2. Unpause and trigger the **retailrocket_pipeline** DAG. It runs
-   bronze → silver → sessions → gold → `dbt run`/`dbt test` → train recommenders + abandonment.
-3. When it finishes, the API (http://localhost:8000/docs) serves data and the Grafana
+2. Unpause **retailrocket_pipeline**. It backfills the dataset's own calendar
+   (2015-05-03 → 2015-09-18), one day per run: bronze → silver → sessions → gold facts →
+   `dbt run`/`dbt test`. Every stage takes the run's `[data_interval_start,
+   data_interval_end)` and rewrites only that window's partitions, so a retry replaces a day
+   instead of doubling it.
+3. Unpause **retailrocket_refresh** (weekly). Co-occurrence weights, the latest-snapshot
+   dimension and the models are whole-history aggregates that a daily window can't express,
+   so they get their own full rebuild + retrain.
+4. When it finishes, the API (http://localhost:8000/docs) serves data and the Grafana
    dashboard (http://localhost:3000) populates.
 
 The dashboard runs outside Docker — see below.
