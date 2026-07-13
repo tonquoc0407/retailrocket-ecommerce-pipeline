@@ -1,5 +1,6 @@
 import os
 import sys
+from datetime import timedelta
 
 import pytest
 from pyspark.sql import SparkSession
@@ -14,6 +15,13 @@ def spark():
     s = SparkSession.builder.master("local[1]").appName("test_bronze").getOrCreate()
     yield s
     s.stop()
+
+def _event_dates(spark, out):
+    # the fixture spans two days; return them in order
+    return sorted(
+        r[0] for r in
+        spark.read.parquet(f"{out}/events").select("event_date").distinct().collect()
+    )
 
 def test_bronze_writes_all_tables(spark, tmp_path):
     out = str(tmp_path / "bronze")
@@ -35,12 +43,7 @@ def test_bronze_writes_all_tables(spark, tmp_path):
 def test_bronze_incremental_only_rewrites_new_partitions(spark, tmp_path):
     out = str(tmp_path / "bronze")
     bronze_ingest.run(spark, FIXTURES, out)  # full load first
-
-    dates = sorted(
-        r[0] for r in
-        spark.read.parquet(f"{out}/events").select("event_date").distinct().collect()
-    )
-    later = dates[-1]
+    later = _event_dates(spark, out)[-1]
 
     # re-ingest only the last day
     written = bronze_ingest.run(spark, FIXTURES, out, since=str(later))
@@ -49,3 +52,29 @@ def test_bronze_incremental_only_rewrites_new_partitions(spark, tmp_path):
     # the earlier partition is left in place, so both days still exist
     after = spark.read.parquet(f"{out}/events").select("event_date").distinct().count()
     assert after == 2
+
+def test_bronze_window_is_half_open(spark, tmp_path):
+    out = str(tmp_path / "bronze")
+    bronze_ingest.run(spark, FIXTURES, out)
+    first, second = _event_dates(spark, out)
+
+    # until is exclusive, so [first, second) must stop short of the second day
+    written = bronze_ingest.run(spark, FIXTURES, out, since=str(first), until=str(second))
+    assert written == 6  # the six events on the first day only
+
+def test_bronze_rerunning_a_window_is_idempotent(spark, tmp_path):
+    out = str(tmp_path / "bronze")
+    bronze_ingest.run(spark, FIXTURES, out)
+    _, second = _event_dates(spark, out)
+
+    # airflow retries and backfills replay the same interval, so the same window run
+    # twice has to land the same rows. dynamic overwrite replaces the partition; an
+    # append would silently double the day.
+    day_after = second + timedelta(days=1)
+    for _ in range(2):
+        written = bronze_ingest.run(spark, FIXTURES, out, since=str(second), until=str(day_after))
+        assert written == 2
+
+        events = spark.read.parquet(f"{out}/events")
+        assert events.count() == 8  # not 10 -- the second day was replaced, not appended
+        assert events.select("event_date").distinct().count() == 2
