@@ -198,8 +198,10 @@ ruff check .                                  # lint
 ```
 
 GitHub Actions (`.github/workflows/ci.yml`) runs three jobs on every push and pull request:
-`ruff` lint, the `pytest` suite (on JDK 17), and `dbt compile` against a throwaway Postgres
-to check that every model — incremental logic included — parses and its refs resolve.
+`ruff` lint, the `pytest` suite (on JDK 17), and a dbt job that seeds a Postgres service from
+`db/ci_seed.sql` and runs `dbt build` (every model plus all data tests) and
+`dbt source freshness` — so the data-quality gate, source contracts and freshness included,
+runs on real rows rather than a parse check.
 
 ## Scope
 

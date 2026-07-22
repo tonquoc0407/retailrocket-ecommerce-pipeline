@@ -179,6 +179,24 @@ appending, since it's an aggregate and a re-touched day would otherwise double c
 `feature_table` aggregates over all of history, so it stays a full-refresh table; only the
 day-grained fact is worth the incremental machinery.
 
-dbt tests cover `not_null`/`unique` on every primary key and `relationships` from
-`fct_funnel` and `dim_items` back to `dim_categories`.
+### Data quality
+
+Tests run at two levels. On the **marts**, `not_null`/`unique` on every primary key and
+`relationships` from `fct_funnel` and `dim_items` back to `dim_categories`. On the **sources**
+(`sources.yml`) they run against the raw tables *before* any model is built, so bad data landed
+by Spark is caught at the edge rather than surfacing three models downstream: `event` and
+`pair_type` are `accepted_values`, `event_count` and co-occurrence `weight` have
+`dbt_utils.accepted_range` floors, plus `not_null`/`unique` on the raw keys.
+
+**Freshness.** `feature_gold` stamps `_loaded_at = current_timestamp()` on `raw_events` and
+`raw_sessions` at write time, and `sources.yml` sets `warn_after: 26h` / `error_after: 48h`
+against it. The event data is a static 2015 export, so freshness measured against the event
+date would be permanently stale and meaningless — keying it on the load timestamp instead makes
+it measure what actually matters, whether the pipeline itself ran. `dbt source freshness` is its
+own gate, separate from the tests.
+
+CI runs the whole thing for real, not just a parse check: it seeds the raw tables from
+`db/ci_seed.sql` (a small internally-consistent stand-in for the Spark load), then
+`dbt build` (every model + all 37 tests) and `dbt source freshness`. `dbt deps` pulls
+`dbt_utils`.
 
