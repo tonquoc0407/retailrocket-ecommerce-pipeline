@@ -55,6 +55,13 @@ def jdbc_props():
         "driver": "org.postgresql.Driver",
     }
 
+def with_load_ts(df):
+    # ingestion timestamp, stamped at write time. the event data is a static 2015 export,
+    # so freshness measured against the *event* date is meaningless (always months stale).
+    # this instead measures pipeline freshness -- did the load actually run recently -- and
+    # is what dbt source freshness keys off in sources.yml.
+    return df.withColumn("_loaded_at", F.current_timestamp())
+
 def write_table(df, table, url, props):
     # truncate instead of drop-and-recreate so dbt views built on these source tables
     # survive a re-run. (a column change still needs a manual drop / dbt clean.)
@@ -98,10 +105,10 @@ def run_incremental(spark, silver_dir, url, props, since, until):
                 .filter(F.col("session_date") < F.to_date(F.lit(until))))
 
     delete_window("raw_events", "event_date", since, until)
-    window_events.write.mode("append").jdbc(url, "raw_events", properties=props)
+    with_load_ts(window_events).write.mode("append").jdbc(url, "raw_events", properties=props)
 
     delete_window("raw_sessions", "session_date", str(emit_from), until)
-    sessions.write.mode("append").jdbc(url, "raw_sessions", properties=props)
+    with_load_ts(sessions).write.mode("append").jdbc(url, "raw_sessions", properties=props)
 
     return sessions.count()
 
@@ -117,10 +124,10 @@ def run(spark, silver_dir, bronze_dir, url, props, since=None, until=None):
     # land the tables dbt reads as sources. events carry session_id so the dbt
     # session-feature mart (abandonment model) can aggregate per session.
     tagged = tag_sessions(events)
-    write_table(tagged.select("visitorid", "event", "itemid", "categoryid",
-                              "event_date", "session_id"),
+    write_table(with_load_ts(tagged.select("visitorid", "event", "itemid", "categoryid",
+                                           "event_date", "session_id")),
                 "raw_events", url, props)
-    write_table(sessions, "raw_sessions", url, props)
+    write_table(with_load_ts(sessions), "raw_sessions", url, props)
 
     # the other three are whole-history aggregates, not facts of a single day:
     # cooccur_pairs counts co-views across every session there has ever been, and

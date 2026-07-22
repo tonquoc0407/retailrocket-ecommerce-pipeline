@@ -1,0 +1,4 @@
+packages:
+  # accepted_range / expression_is_true for the source data-quality tests
+  - package: dbt-labs/dbt_utils
+    version: 1.3.0

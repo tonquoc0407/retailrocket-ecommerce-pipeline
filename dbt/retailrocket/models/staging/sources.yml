@@ -1,12 +1,70 @@
 version: 2
 
-# tables landed in public by spark_jobs/feature_gold.py (JDBC write)
+# tables landed in public by spark_jobs/feature_gold.py (JDBC write). the tests here are
+# the boundary check: they run against the raw tables before any staging/mart is built, so
+# bad data landed by spark is caught at the edge instead of surfacing three models later.
 sources:
   - name: raw
     schema: public
     tables:
       - name: raw_events
+        # _loaded_at is stamped by feature_gold at write time, so freshness measures how
+        # long ago the pipeline last loaded -- not the age of the 2015 event data itself.
+        loaded_at_field: _loaded_at
+        freshness:
+          warn_after: {count: 26, period: hour}   # a daily load has ~2h of slack
+          error_after: {count: 48, period: hour}
+        columns:
+          - name: visitorid
+            data_tests: [not_null]
+          - name: itemid
+            data_tests: [not_null]
+          - name: event
+            data_tests:
+              - not_null
+              - accepted_values:
+                  values: ['view', 'addtocart', 'transaction']
+          - name: _loaded_at
+            data_tests: [not_null]
+
       - name: raw_sessions
+        loaded_at_field: _loaded_at
+        freshness:
+          warn_after: {count: 26, period: hour}
+          error_after: {count: 48, period: hour}
+        columns:
+          - name: session_id
+            data_tests: [not_null, unique]
+          - name: visitorid
+            data_tests: [not_null]
+          - name: event_count
+            data_tests:
+              - not_null
+              # a session is built from at least one event, so a zero here means the
+              # session builder emitted an empty group -- a real bug, not just noise.
+              - dbt_utils.accepted_range:
+                  min_value: 1
+          - name: has_purchase
+            data_tests: [not_null]
+
       - name: raw_category_tree
+        columns:
+          - name: categoryid
+            data_tests: [not_null, unique]
+
       - name: item_latest
+        columns:
+          - name: itemid
+            data_tests: [not_null, unique]
+
       - name: cooccur_pairs
+        columns:
+          - name: pair_type
+            data_tests:
+              - accepted_values:
+                  values: ['view', 'purchase']
+          - name: weight
+            # MIN_SUPPORT in feature_gold drops pairs seen fewer than twice
+            data_tests:
+              - dbt_utils.accepted_range:
+                  min_value: 2
